@@ -1,0 +1,16 @@
+Il existe plusieurs types prédéfinis. Ce sont :
+
+    le type vide : void. Ce type est utilisé pour spécifier le fait qu'il n'y a pas de type. Cela a une utilité pour faire des procédures (fonctions ne renvoyant rien) et les pointeurs sur des données non typées (voir plus loin) ;
+    les booléens : bool, qui peuvent prendre les valeurs true et false (en C++ uniquement, ils n'existent pas en C) ;
+    les caractères : char ;
+    les caractères longs : wchar_t (ce n'est un type de base que pour le langage C++, mais il est également défini dans la bibliothèque standard C et est donc utilisable malgré tout en C) ;
+    les entiers : int ;
+    les réels : float ;
+    les réels en double précision : double ;
+    les tableaux à une dimension, dont les indices sont spécifiés par des crochets ('[' et ']'). Pour les tableaux de dimension supérieure ou égale à 2, on utilisera des tableaux de tableaux ;
+    les structures, unions et énumérations (voir plus loin).
+
+    les entiers longs : long int, ou long (int est facultatif) ;
+    les entiers courts : short int, ou short ;
+    les réels en quadruple précision : long double.
+

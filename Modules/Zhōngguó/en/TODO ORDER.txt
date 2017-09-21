@@ -1,0 +1,8 @@
+Zhōngguó
+
+Demarage fenetre graphique
+initialisation de tout les composant graphique en simulatané pour TOUT TOUT LE TEMPS
+fenetre initialisation
+si pas de compte en memoire
+Demande login passe avec bouton de validation ou pour quitté et check box pour ce souvenir ou non du compte
+Bouton lancement du bot en vert

@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html xmlns:og="http://ogp.me/ns#" lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+	<meta charset="iso-8859-1">
+	<title>PowerShell Introduction</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="generator" content="developpez-com">
+	<meta name="description" content="">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="PowerShell Introduction">
+	<meta property="og:image" content="https://www.developpez.com/template/images/logo.png">
+	<meta property="og:url" content="http://laurent-dardenne.developpez.com/articles/Windows/PowerShell/Introduction/">
+	<meta property="og:locale" content="fr_FR">
+	<meta property="og:site_name" content="Developpez.com">
+	<meta property="twitter:card" content="summary">
+	<meta property="twitter:url" content="http://laurent-dardenne.developpez.com/articles/Windows/PowerShell/Introduction/">
+	<meta property="twitter:description" content="">
+	<meta property="twitter:title" content="PowerShell Introduction">
+	<meta property="twitter:image" content="https://www.developpez.com/template/images/logo.png">
+	<script type="text/javascript" async="" src="PowerShell%20Introduction_fichiers/ga.js"></script><script type="text/javascript" src="PowerShell%20Introduction_fichiers/jquery-1.js"></script>
+	<script async="" type="text/javascript" src="PowerShell%20Introduction_fichiers/a"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="http://laurent-dardenne.developpez.com/template/favicon.ico">
+	<link rel="image_src" href="https://www.developpez.com/facebook-icon.png">
+	<link rel="stylesheet" type="text/css" href="PowerShell%20Introduction_fichiers/gabarit.css">
+	<link rel="stylesheet" type="text/css" media="print" href="PowerShell%20Introduction_fichiers/printer.css">
+	<link rel="stylesheet" type="text/css" href="PowerShell%20Introduction_fichiers/gabarit-mobile.css">
+	<script type="text/javascript" src="PowerShell%20Introduction_fichiers/gabarit-mobile.js"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="PowerShell%20Introduction_fichiers/developpez-kit-generation.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="PowerShell%20Introduction_fichiers/code.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="PowerShell%20Introduction_fichiers/lightbox.css">
+	<script type="text/javascript" src="PowerShell%20Introduction_fichiers/developpez-kit-generation.js"></script>
+	<script type="text/javascript" src="PowerShell%20Introduction_fichiers/lightbox.js"></script>
+	<script type="text/javascript" src="PowerShell%20Introduction_fichiers/fonctions-kit.js"></script>
+	<!--[if lt IE 7]>
+	<script src="/template/ie7/IE7.js" type="text/javascript"></script>
+	<![endif]-->
+
+	<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie6.css" />
+	<![endif]-->
+
+	<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/template/gabarit-ie7.css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="/template/kit/html5_ie.js"></script>
+	<![endif]-->
+	<!--[if IE 9]><link rel="stylesheet" type="text/css" href="/template/kit/ie9.css" /><![endif]-->
+	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="/template/kit/ie8.css" /><![endif]-->
+	<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="/template/kit/ie.css" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="/template/kit/ie7.css" /><![endif]-->
+	<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="/template/kit/ie6.css" /><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="/template/kit/html5_ie.js"></script><![endif]-->
+
+<script src="PowerShell%20Introduction_fichiers/secureAnonymousFramework"></script><style type="text/css">* html #li_ui_li_gen_1504410616581_0 a#li_ui_li_gen_1504410616581_0-link{height:1% !important;}#li_ui_li_gen_1504410616581_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1504410616581_0 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1504410616581_0 a#li_ui_li_gen_1504410616581_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1504410616581_0 a#li_ui_li_gen_1504410616581_0-link:link, #li_ui_li_gen_1504410616581_0 a#li_ui_li_gen_1504410616581_0-link:visited, #li_ui_li_gen_1504410616581_0 a#li_ui_li_gen_1504410616581_0-link:hover, #li_ui_li_gen_1504410616581_0 a#li_ui_li_gen_1504410616581_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1504410616581_0 a#li_ui_li_gen_1504410616581_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1504410616581_0 #li_ui_li_gen_1504410616581_0-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -593px !important;background-repeat:no-repeat !important;background-color:#0077b5 !important;background-size:initial !important;cursor:pointer !important;border:0 !important;border-right:1px solid #066094 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;}#li_ui_li_gen_1504410616581_0 #li_ui_li_gen_1504410616581_0-title{color:#fff !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;text-shadow:0 -1px #005887 !important;line-height:20px !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}#li_ui_li_gen_1504410616581_0.hovered #li_ui_li_gen_1504410616581_0-title{border:1px solid #000 !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}#li_ui_li_gen_1504410616581_0.clicked #li_ui_li_gen_1504410616581_0-title, #li_ui_li_gen_1504410616581_0.down #li_ui_li_gen_1504410616581_0-title{color:#fff !important;border:1px solid #000 !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.IN-shadowed #li_ui_li_gen_1504410616581_0 #li_ui_li_gen_1504410616581_0-title{}.IN-shadowed #li_ui_li_gen_1504410616581_0.hovered #li_ui_li_gen_1504410616581_0-title{}.IN-shadowed #li_ui_li_gen_1504410616581_0.clicked #li_ui_li_gen_1504410616581_0-title, .IN-shadowed #li_ui_li_gen_1504410616581_0.down #li_ui_li_gen_1504410616581_0-title{}#li_ui_li_gen_1504410616581_0 #li_ui_li_gen_1504410616581_0-title-text, #li_ui_li_gen_1504410616581_0 #li_ui_li_gen_1504410616581_0-title-text *{color:#fff !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1504410616581_0 #li_ui_li_gen_1504410616581_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1504410616581_0 #li_ui_li_gen_1504410616581_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1504410616581_0.hovered #li_ui_li_gen_1504410616581_0-title-text, #li_ui_li_gen_1504410616581_0.hovered #li_ui_li_gen_1504410616581_0-title-text *{color:#fff !important;}#li_ui_li_gen_1504410616581_0.clicked #li_ui_li_gen_1504410616581_0-title-text, #li_ui_li_gen_1504410616581_0.down #li_ui_li_gen_1504410616581_0-title-text, #li_ui_li_gen_1504410616581_0.clicked #li_ui_li_gen_1504410616581_0-title-text *, #li_ui_li_gen_1504410616581_0.down #li_ui_li_gen_1504410616581_0-title-text *{color:#fff !important;}#li_ui_li_gen_1504410616581_0 #li_ui_li_gen_1504410616581_0-title #li_ui_li_gen_1504410616581_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1504410616581_0 #li_ui_li_gen_1504410616581_0-title{color:#fff !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}.success #li_ui_li_gen_1504410616581_0 #li_ui_li_gen_1504410616581_0-title-text, .success #li_ui_li_gen_1504410616581_0 #li_ui_li_gen_1504410616581_0-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1504410616581_0 #li_ui_li_gen_1504410616581_0-title{}.success #li_ui_li_gen_1504410616581_0.hovered #li_ui_li_gen_1504410616581_0-title{color:#fff !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}.success #li_ui_li_gen_1504410616581_0.hovered #li_ui_li_gen_1504410616581_0-title-text, .success #li_ui_li_gen_1504410616581_0.hovered #li_ui_li_gen_1504410616581_0-title-text *{color:#fff !important;}.success #li_ui_li_gen_1504410616581_0.clicked #li_ui_li_gen_1504410616581_0-title, .success #li_ui_li_gen_1504410616581_0.down #li_ui_li_gen_1504410616581_0-title{color:#fff !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.success #li_ui_li_gen_1504410616581_0.clicked #li_ui_li_gen_1504410616581_0-title-text, .success #li_ui_li_gen_1504410616581_0.down #li_ui_li_gen_1504410616581_0-title-text, .success #li_ui_li_gen_1504410616581_0.clicked #li_ui_li_gen_1504410616581_0-title-text *, .success #li_ui_li_gen_1504410616581_0.down #li_ui_li_gen_1504410616581_0-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1504410616581_0.clicked #li_ui_li_gen_1504410616581_0-title, .IN-shadowed .success #li_ui_li_gen_1504410616581_0.down #li_ui_li_gen_1504410616581_0-title{}* html #li_ui_li_gen_1504410616592_1 a#li_ui_li_gen_1504410616592_1-link{height:1% !important;}#li_ui_li_gen_1504410616592_1{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1504410616592_1 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1504410616592_1 a#li_ui_li_gen_1504410616592_1-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1504410616592_1 a#li_ui_li_gen_1504410616592_1-link:link, #li_ui_li_gen_1504410616592_1 a#li_ui_li_gen_1504410616592_1-link:visited, #li_ui_li_gen_1504410616592_1 a#li_ui_li_gen_1504410616592_1-link:hover, #li_ui_li_gen_1504410616592_1 a#li_ui_li_gen_1504410616592_1-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1504410616592_1 a#li_ui_li_gen_1504410616592_1-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1504410616592_1 #li_ui_li_gen_1504410616592_1-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -593px !important;background-repeat:no-repeat !important;background-color:#0077b5 !important;background-size:initial !important;cursor:pointer !important;border:0 !important;border-right:1px solid #066094 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;}#li_ui_li_gen_1504410616592_1 #li_ui_li_gen_1504410616592_1-title{color:#fff !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;text-shadow:0 -1px #005887 !important;line-height:20px !important;border-radius:2px !important;-moz-border-radius:2px !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}#li_ui_li_gen_1504410616592_1.hovered #li_ui_li_gen_1504410616592_1-title{border:1px solid #000 !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}#li_ui_li_gen_1504410616592_1.clicked #li_ui_li_gen_1504410616592_1-title, #li_ui_li_gen_1504410616592_1.down #li_ui_li_gen_1504410616592_1-title{color:#fff !important;border:1px solid #000 !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.IN-shadowed #li_ui_li_gen_1504410616592_1 #li_ui_li_gen_1504410616592_1-title{}.IN-shadowed #li_ui_li_gen_1504410616592_1.hovered #li_ui_li_gen_1504410616592_1-title{}.IN-shadowed #li_ui_li_gen_1504410616592_1.clicked #li_ui_li_gen_1504410616592_1-title, .IN-shadowed #li_ui_li_gen_1504410616592_1.down #li_ui_li_gen_1504410616592_1-title{}#li_ui_li_gen_1504410616592_1 #li_ui_li_gen_1504410616592_1-title-text, #li_ui_li_gen_1504410616592_1 #li_ui_li_gen_1504410616592_1-title-text *{color:#fff !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1504410616592_1 #li_ui_li_gen_1504410616592_1-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1504410616592_1 #li_ui_li_gen_1504410616592_1-title-text em{font-style:italic !important;}#li_ui_li_gen_1504410616592_1.hovered #li_ui_li_gen_1504410616592_1-title-text, #li_ui_li_gen_1504410616592_1.hovered #li_ui_li_gen_1504410616592_1-title-text *{color:#fff !important;}#li_ui_li_gen_1504410616592_1.clicked #li_ui_li_gen_1504410616592_1-title-text, #li_ui_li_gen_1504410616592_1.down #li_ui_li_gen_1504410616592_1-title-text, #li_ui_li_gen_1504410616592_1.clicked #li_ui_li_gen_1504410616592_1-title-text *, #li_ui_li_gen_1504410616592_1.down #li_ui_li_gen_1504410616592_1-title-text *{color:#fff !important;}#li_ui_li_gen_1504410616592_1 #li_ui_li_gen_1504410616592_1-title #li_ui_li_gen_1504410616592_1-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1504410616592_1 #li_ui_li_gen_1504410616592_1-title{color:#fff !important;border-top-color:#0077b5 !important;border-right-color:#0077b5 !important;border-bottom-color:#0077b5 !important;border-left-color:#0077b5 !important;background-color:#0077b5 !important;background-image:-moz-linear-gradient(top, #0077b5 0%, #0077b5 100%) !important;}.success #li_ui_li_gen_1504410616592_1 #li_ui_li_gen_1504410616592_1-title-text, .success #li_ui_li_gen_1504410616592_1 #li_ui_li_gen_1504410616592_1-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1504410616592_1 #li_ui_li_gen_1504410616592_1-title{}.success #li_ui_li_gen_1504410616592_1.hovered #li_ui_li_gen_1504410616592_1-title{color:#fff !important;border-top-color:#0369a0 !important;border-right-color:#0369a0 !important;border-bottom-color:#0369a0 !important;border-left-color:#0369a0 !important;background-color:#0369a0 !important;background-image:-moz-linear-gradient(top, #0369a0 0%, #0369a0 100%) !important;}.success #li_ui_li_gen_1504410616592_1.hovered #li_ui_li_gen_1504410616592_1-title-text, .success #li_ui_li_gen_1504410616592_1.hovered #li_ui_li_gen_1504410616592_1-title-text *{color:#fff !important;}.success #li_ui_li_gen_1504410616592_1.clicked #li_ui_li_gen_1504410616592_1-title, .success #li_ui_li_gen_1504410616592_1.down #li_ui_li_gen_1504410616592_1-title{color:#fff !important;border-top-color:#066094 !important;border-right-color:#066094 !important;border-bottom-color:#066094 !important;border-left-color:#066094 !important;background-color:#066094 !important;background-image:-moz-linear-gradient(top, #066094 0%, #066094 100%) !important;}.success #li_ui_li_gen_1504410616592_1.clicked #li_ui_li_gen_1504410616592_1-title-text, .success #li_ui_li_gen_1504410616592_1.down #li_ui_li_gen_1504410616592_1-title-text, .success #li_ui_li_gen_1504410616592_1.clicked #li_ui_li_gen_1504410616592_1-title-text *, .success #li_ui_li_gen_1504410616592_1.down #li_ui_li_gen_1504410616592_1-title-text *{color:#fff !important;}.IN-shadowed .success #li_ui_li_gen_1504410616592_1.clicked #li_ui_li_gen_1504410616592_1-title, .IN-shadowed .success #li_ui_li_gen_1504410616592_1.down #li_ui_li_gen_1504410616592_1-title{}</style></head>
+<body>
+<header>
+
+<div id="gabarit_recherche">
+<form action="https://www.google.fr" target="_blank">
+  <div>
+    <input name="cx" value="partner-pub-8110924381468607:6449306375" type="hidden">
+    <input name="ie" value="UTF-8" type="hidden">
+    <input name="q" size="12" type="text">
+    <input name="sa" value="Rechercher" type="submit">
+  </div>
+</form>
+</div>
+
+<div id="gabarit_superieur">
+	<nav>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/" title="">Forums</a></li>
+		<li><a href="https://general.developpez.com/cours/" title="">Tutoriels</a></li>
+		<li><a href="http://magazine.developpez.com/" title="">Magazine</a></li>
+		<li><a href="https://general.developpez.com/faq/" title="">FAQs</a></li>
+		<li><a href="https://www.developpez.net/forums/blogs/" title="">Blogs</a></li>
+		<li><a href="https://chat.developpez.com/" title="">Chat</a></li>
+		<li><a href="https://www.developpez.com/newsletter/">Newsletter</a></li>
+		<li><a href="https://etudes.developpez.com/">Études</a></li>
+		<li><a href="https://emploi.developpez.com/" title="">Emploi</a></li>
+		<li><a href="https://club.developpez.com/">Club</a></li>
+		<li><a href="https://club.developpez.com/contacts/" title="">Contacts</a></li>
+	</ul>
+	</nav>
+</div>
+<div style="position: relative; clear: both; float: right; top: -2px; width: 745px; margin-top: 10px; margin-right: 5px; background-color: #E1E1E2">
+<div id="gabarit_pub0"></div><style type="text/css">html, body { margin: 0; padding: 0; }</style><iframe src="PowerShell%20Introduction_fichiers/show_i.htm" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="no" width="728" height="90" frameborder="0"></iframe><style type="text/css"> #gabarit_pub0 { display: inline-block; }</style>
+</div>
+
+<div id="gabarit_logo">
+	<a href="https://www.developpez.com/" title="Accueil Developpez.com"><img src="PowerShell%20Introduction_fichiers/logo.png" alt="" width="216" height="89"></a>
+</div>
+
+<nav>
+
+<div id="gabarit_mobile">
+	<img src="PowerShell%20Introduction_fichiers/logo-mobile.png" alt="" width="65" height="72">
+	<div>Developpez.com - <strong>Windows</strong></div>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/f79/hardware-systemes-logiciels/windows/">Forums</a></li>
+		<li><span>Autre rubrique</span></li>
+	</ul>
+</div>
+
+<div id="gabarit_menu_mobile">
+	<div>X</div>
+	<p>Choisissez <span>d'abord la catégorie</span><span>ensuite la rubrique</span> :</p>
+	<ul><li></li></ul>
+</div>
+
+<ul id="gabarit_menu">
+	<li><a href="https://www.developpez.com/" data-idrub="1" data-niv="1">Accueil<span class="gabarit_tooltip">Actualités IT Pro</span></a>
+			</li>
+	<li><a href="https://alm.developpez.com/" data-idrub="42" data-niv="1">ALM<span class="gabarit_tooltip">Cycle de vie du logiciel</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://alm.developpez.com/" data-idrub="42" data-niv="2">ALM</a></li>
+				<li><a href="https://merise.developpez.com/" data-idrub="43" data-niv="2">Merise</a></li>
+				<li><a href="https://uml.developpez.com/" data-idrub="12" data-niv="2">UML</a></li>
+			</ul></li>
+	<li><a href="https://java.developpez.com/" data-idrub="4" data-niv="1">Java<span class="gabarit_tooltip">Plateforme et langage Java</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://java.developpez.com/" data-idrub="4" data-niv="2">Java</a></li>
+				<li><a href="https://javaweb.developpez.com/" data-idrub="97" data-niv="2">Java Web</a></li>
+				<li><a href="https://spring.developpez.com/" data-idrub="87" data-niv="2">Spring</a></li>
+				<li><a href="https://android.developpez.com/" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://eclipse.developpez.com/" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://netbeans.developpez.com/" data-idrub="66" data-niv="2">NetBeans</a></li>
+			</ul></li>
+	<li><a href="https://dotnet.developpez.com/" data-idrub="20" data-niv="1">.NET<span class="gabarit_tooltip">Microsoft Framework .NET</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://dotnet.developpez.com/" data-idrub="20" data-niv="2">Microsoft DotNET</a></li>
+				<li><a href="https://dotnet.developpez.com/visual-studio/" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://dotnet.developpez.com/aspnet/" data-idrub="83" data-niv="2">ASP.NET</a></li>
+				<li><a href="https://dotnet.developpez.com/csharp/" data-idrub="81" data-niv="2">C#</a></li>
+				<li><a href="https://dotnet.developpez.com/vbnet/" data-idrub="82" data-niv="2">VB.NET</a></li>
+				<li><a href="https://windowsphone.developpez.com/" data-idrub="105" data-niv="2">Windows Phone</a></li>
+				<li><a href="https://windows-azure.developpez.com/" data-idrub="107" data-niv="2">Microsoft Azure</a></li>
+			</ul></li>
+	<li><a href="https://web.developpez.com/" data-idrub="8" data-niv="1">Dév. Web<span class="gabarit_tooltip">Développement Web et Webmarketing</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://web.developpez.com/" data-idrub="8" data-niv="2">Développement Web</a></li>
+				<li><a href="https://ajax.developpez.com/" data-idrub="85" data-niv="2">AJAX</a></li>
+				<li><a href="https://apache.developpez.com/" data-idrub="71" data-niv="2">Apache</a></li>
+				<li><a href="https://asp.developpez.com/" data-idrub="10" data-niv="2">ASP</a></li>
+				<li><a href="https://css.developpez.com/" data-idrub="51" data-niv="2">CSS</a></li>
+				<li><a href="https://dart.developpez.com/" data-idrub="125" data-niv="2">Dart</a></li>
+				<li><a href="https://flash.developpez.com/" data-idrub="41" data-niv="2">Flash / Flex</a></li>
+				<li><a href="https://javascript.developpez.com/" data-idrub="45" data-niv="2">JavaScript</a></li>
+				<li><a href="https://nodejs.developpez.com/" data-idrub="141" data-niv="2">NodeJS</a></li>
+				<li><a href="https://php.developpez.com/" data-idrub="9" data-niv="2">PHP</a></li>
+				<li><a href="https://ruby.developpez.com/" data-idrub="53" data-niv="2">Ruby &amp; Rails</a></li>
+				<li><a href="https://typescript.developpez.com/" data-idrub="127" data-niv="2">TypeScript</a></li>
+				<li><a href="https://web-semantique.developpez.com/" data-idrub="111" data-niv="2">Web sémantique</a></li>
+				<li><a href="https://webmarketing.developpez.com/" data-idrub="80" data-niv="2">Webmarketing</a></li>
+				<li><a href="https://xhtml.developpez.com/" data-idrub="50" data-niv="2">(X)HTML</a></li>
+			</ul></li>
+	<li><a href="https://edi.developpez.com/" data-idrub="90" data-niv="1">EDI<span class="gabarit_tooltip">Environnements de Développement Intégré</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://edi.developpez.com/" data-idrub="90" data-niv="2">EDI</a></li>
+				<li><a href="https://4d.developpez.com/" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://delphi.developpez.com/" data-idrub="2" data-niv="2">Delphi</a></li>
+				<li><a href="https://eclipse.developpez.com/" data-idrub="55" data-niv="2">Eclipse</a></li>
+				<li><a href="https://labview.developpez.com/" data-idrub="72" data-niv="2">LabVIEW</a></li>
+				<li><a href="https://netbeans.developpez.com/" data-idrub="66" data-niv="2">NetBeans</a></li>
+				<li><a href="https://matlab.developpez.com/" data-idrub="58" data-niv="2">MATLAB</a></li>
+				<li><a href="https://scilab.developpez.com/" data-idrub="120" data-niv="2">Scilab</a></li>
+				<li><a href="https://dotnet.developpez.com/visual-studio/" data-idrub="84" data-niv="2">Visual Studio</a></li>
+				<li><a href="https://wind.developpez.com/" data-idrub="74" data-niv="2">WinDev</a></li>
+				<li><a href="https://vb.developpez.com/" data-idrub="5" data-niv="2">Visual Basic 6</a></li>
+				<li><a href="https://lazarus.developpez.com/" data-idrub="96" data-niv="2">Lazarus</a></li>
+				<li><a href="https://qt-creator.developpez.com/" data-idrub="109" data-niv="2">Qt Creator</a></li>
+			</ul></li>
+	<li><a href="https://programmation.developpez.com/" data-idrub="119" data-niv="1">Programmation<span class="gabarit_tooltip">Programmation et langages de programmation applicatifs</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://programmation.developpez.com/" data-idrub="119" data-niv="2">Programmation</a></li>
+				<li><a href="https://algo.developpez.com/" data-idrub="47" data-niv="2">Débuter - Algorithmique</a></li>
+				<li><a href="https://jeux.developpez.com/" data-idrub="38" data-niv="2">2D - 3D - Jeux</a></li>
+				<li><a href="https://asm.developpez.com/" data-idrub="16" data-niv="2">Assembleur</a></li>
+				<li><a href="https://c.developpez.com/" data-idrub="3" data-niv="2">C</a></li>
+				<li><a href="https://cpp.developpez.com/" data-idrub="59" data-niv="2">C++</a></li>
+				<li><a href="https://go.developpez.com/" data-idrub="124" data-niv="2">Go</a></li>
+				<li><a href="https://objective-c.developpez.com/" data-idrub="117" data-niv="2">Objective C</a></li>
+				<li><a href="https://pascal.developpez.com/" data-idrub="7" data-niv="2">Pascal</a></li>
+				<li><a href="https://perl.developpez.com/" data-idrub="29" data-niv="2">Perl</a></li>
+				<li><a href="https://python.developpez.com/" data-idrub="27" data-niv="2">Python</a></li>
+				<li><a href="https://swift.developpez.com/" data-idrub="128" data-niv="2">Swift</a></li>
+				<li><a href="https://qt.developpez.com/" data-idrub="65" data-niv="2">Qt</a></li>
+				<li><a href="https://xml.developpez.com/" data-idrub="11" data-niv="2">XML</a></li>
+				<li><a href="https://general.developpez.com/cours/" data-idrub="21" data-niv="2">Autres</a></li>
+			</ul></li>
+	<li><a href="https://sgbd.developpez.com/" data-idrub="13" data-niv="1">SGBD<span class="gabarit_tooltip">Systèmes de Gestion de Bases de Données</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://sgbd.developpez.com/" data-idrub="13" data-niv="2">SGBD &amp; SQL</a></li>
+				<li><a href="https://4d.developpez.com/" data-idrub="39" data-niv="2">4D</a></li>
+				<li><a href="https://access.developpez.com/" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://big-data.developpez.com/" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://db2.developpez.com/" data-idrub="36" data-niv="2">DB2</a></li>
+				<li><a href="https://firebird.developpez.com/" data-idrub="73" data-niv="2">Firebird</a></li>
+				<li><a href="https://interbase.developpez.com/" data-idrub="32" data-niv="2">InterBase</a></li>
+				<li><a href="https://mysql.developpez.com/" data-idrub="31" data-niv="2">MySQL</a></li>
+				<li><a href="https://nosql.developpez.com/" data-idrub="114" data-niv="2">NoSQL</a></li>
+				<li><a href="https://postgresql.developpez.com/" data-idrub="33" data-niv="2">PostgreSQL</a></li>
+				<li><a href="https://oracle.developpez.com/" data-idrub="25" data-niv="2">Oracle</a></li>
+				<li><a href="https://sybase.developpez.com/" data-idrub="37" data-niv="2">Sybase</a></li>
+				<li><a href="https://sqlserver.developpez.com/" data-idrub="34" data-niv="2">SQL-Server</a></li>
+			</ul></li>
+	<li><a href="https://office.developpez.com/" data-idrub="54" data-niv="1">Office<span class="gabarit_tooltip">Bureautique pour l'entreprise</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://office.developpez.com/" data-idrub="54" data-niv="2">Microsoft Office</a></li>
+				<li><a href="https://access.developpez.com/" data-idrub="19" data-niv="2">Access</a></li>
+				<li><a href="https://excel.developpez.com/" data-idrub="75" data-niv="2">Excel</a></li>
+				<li><a href="https://word.developpez.com/" data-idrub="76" data-niv="2">Word</a></li>
+				<li><a href="https://outlook.developpez.com/" data-idrub="77" data-niv="2">Outlook</a></li>
+				<li><a href="https://powerpoint.developpez.com/" data-idrub="78" data-niv="2">PowerPoint</a></li>
+				<li><a href="https://sharepoint.developpez.com/" data-idrub="79" data-niv="2">SharePoint</a></li>
+				<li><a href="https://project.developpez.com/" data-idrub="99" data-niv="2">Microsoft Project</a></li>
+				<li><a href="https://openoffice-libreoffice.developpez.com/" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+			</ul></li>
+	<li><a href="https://solutions-entreprise.developpez.com/" data-idrub="86" data-niv="1">Solutions d'entreprise<span class="gabarit_tooltip">Autres logiciels pour l'entreprise</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://solutions-entreprise.developpez.com/" data-idrub="86" data-niv="2">Solutions d'entreprise</a></li>
+				<li><a href="https://big-data.developpez.com/" data-idrub="126" data-niv="2">Big Data</a></li>
+				<li><a href="https://bpm.developpez.com/" data-idrub="134" data-niv="2">BPM</a></li>
+				<li><a href="https://business-intelligence.developpez.com/" data-idrub="61" data-niv="2">Business Intelligence</a></li>
+				<li><a href="https://solutions-entreprise.developpez.com/erp-pgi/presentation-erp-pgi/" data-idrub="91" data-niv="2">ERP / PGI</a></li>
+				<li><a href="https://crm.developpez.com/" data-idrub="92" data-niv="2">CRM</a></li>
+				<li><a href="https://sas.developpez.com/" data-idrub="93" data-niv="2">SAS</a></li>
+				<li><a href="https://cloud-computing.developpez.com/" data-idrub="103" data-niv="2">Cloud Computing</a></li>
+				<li><a href="https://sap.developpez.com/" data-idrub="106" data-niv="2">SAP</a></li>
+				<li><a href="https://www.developpez.net/forums/f1664/systemes/windows/windows-serveur/biztalk-server/" data-idrub="115" data-niv="2">Microsoft BizTalk Server</a></li>
+				<li><a href="https://talend.developpez.com/" data-idrub="118" data-niv="2">Talend</a></li>
+				<li><a href="https://bluemix.developpez.com/" data-idrub="135" data-niv="2">IBM Bluemix</a></li>
+			</ul></li>
+	<li><a href="https://applications.developpez.com/" data-idrub="88" data-niv="1">Applications<span class="gabarit_tooltip">Applications logicielles</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://applications.developpez.com/" data-idrub="88" data-niv="2">Applications</a></li>
+				<li><a href="https://open-source.developpez.com/" data-idrub="121" data-niv="2">Libres &amp; Open Source</a></li>
+				<li><a href="https://openoffice-libreoffice.developpez.com/" data-idrub="116" data-niv="2">OpenOffice &amp; LibreOffice</a></li>
+				<li><a href="https://portail-projets.developpez.com/" data-idrub="98" data-niv="2">Projets</a></li>
+			</ul></li>
+	<li><a href="https://mobiles.developpez.com/" data-idrub="94" data-niv="1">Mobiles<span class="gabarit_tooltip">Logiciels et matériels mobiles</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://mobiles.developpez.com/" data-idrub="94" data-niv="2">Mobiles</a></li>
+				<li><a href="https://android.developpez.com/" data-idrub="95" data-niv="2">Android</a></li>
+				<li><a href="https://ios.developpez.com/" data-idrub="101" data-niv="2">iOS</a></li>
+				<li><a href="https://windowsphone.developpez.com/" data-idrub="105" data-niv="2">Windows Phone</a></li>
+			</ul></li>
+	<li><a href="https://systeme.developpez.com/" data-idrub="30" data-niv="1" class="gabarit_selection">Systèmes<span class="gabarit_tooltip">Logiciels et matériels systèmes</span></a>
+			<ul class="gabarit_sousmenu">
+				<li><a href="https://systeme.developpez.com/" data-idrub="30" data-niv="2">Systèmes</a></li>
+				<li><a href="https://windows.developpez.com/" data-idrub="17" data-niv="2">Windows</a></li>
+				<li><a href="https://linux.developpez.com/" data-idrub="18" data-niv="2">Linux</a></li>
+				<li><a href="https://securite.developpez.com/" data-idrub="40" data-niv="2">Sécurité</a></li>
+				<li><a href="https://hardware.developpez.com/" data-idrub="64" data-niv="2">Hardware</a></li>
+				<li><a href="https://mac.developpez.com/" data-idrub="57" data-niv="2">Mac</a></li>
+				<li><a href="https://raspberry-pi.developpez.com/" data-idrub="131" data-niv="2">Raspberry Pi</a></li>
+				<li><a href="https://reseau.developpez.com/" data-idrub="70" data-niv="2">Réseau</a></li>
+				<li><a href="https://green-it.developpez.com/" data-idrub="104" data-niv="2">Green IT</a></li>
+				<li><a href="https://embarque.developpez.com/" data-idrub="110" data-niv="2">Systèmes Embarqués</a></li>
+				<li><a href="https://virtualisation.developpez.com/" data-idrub="108" data-niv="2">Virtualisation</a></li>
+			</ul></li>
+</ul>
+
+<ul id="gabarit_barre1">
+	<li><a href="https://systeme.developpez.com/">Systèmes</a></li>
+	<li class="gabarit_selection"><a href="https://windows.developpez.com/">Windows</a></li>
+	<li><a href="https://linux.developpez.com/">Linux</a></li>
+	<li><a href="https://securite.developpez.com/">Sécurité</a></li>
+	<li><a href="https://hardware.developpez.com/">Hardware</a></li>
+	<li><a href="https://mac.developpez.com/">Mac</a></li>
+	<li><a href="https://raspberry-pi.developpez.com/">Raspberry Pi</a></li>
+	<li><a href="https://reseau.developpez.com/">Réseau</a></li>
+	<li><a href="https://green-it.developpez.com/">Green IT</a></li>
+	<li><a href="https://embarque.developpez.com/">Systèmes Embarqués</a></li>
+	<li><a href="https://virtualisation.developpez.com/">Virtualisation</a></li>
+</ul>
+
+<div id="gabarit_barre2">
+	<a class="gabarit_social gabarit_facebook" href="http://www.facebook.com/pages/Microsoft-Windows/107477895949990" target="_blank" title="Retrouver Developpez sur Facebook"></a>
+	<a class="gabarit_social gabarit_twitter" href="http://www.twitter.com/WindowsDVP" target="_blank" title="Retrouver Developpez sur Twitter"></a>
+	<a class="gabarit_social gabarit_rss" href="http://windows.developpez.com/index/rss" target="_blank" title="Flux RSS"></a>
+	<ul>
+		<li><a href="https://www.developpez.net/forums/f79/hardware-systemes-logiciels/windows/">FORUM WINDOWS</a></li>
+		<li><a href="https://www.developpez.net/forums/f16/general-developpement/programmation-windows/">FORUM PROGRAMMATION</a></li>
+		<li><a href="https://windows.developpez.com/faq/">F.A.Qs WINDOWS</a></li>
+		<li><a href="https://windows.developpez.com/cours/">TUTORIELS WINDOWS</a></li>
+		<li><a href="https://windows.developpez.com/quiz/">QUIZ WINDOWS</a></li>
+		<li><a href="https://windows.developpez.com/telecharger/">LOGICIELS &amp; SOURCES WINDOWS</a></li>
+		<li><a href="https://windows.developpez.com/livres/">LIVRES</a></li>
+	</ul>
+</div>
+
+</nav>
+</header>
+<section>
+
+<div class="contenuPage">		<article class="ArticleComplet" itemscope="" itemtype="http://schema.org/Article" style="margin: 0px 20px;">
+<meta itemprop="genre" content="informatique">
+<meta itemprop="inLanguage" content="fr-FR">
+		
+<header class="EnteteTitres">
+<h1 class="titre-article" itemprop="name">Introduction à PowerShell (nom de code Monad)</h1>
+
+</header><nav class="nav-sommaire" role="navigation">
+<header><h1 class="TitreHeader StopArrondi ToggleGecko">Table des matières<img class="ToggleImgPlier" title="Plier" alt="Plier" src="PowerShell%20Introduction_fichiers/fleche-haut-bleue.png"><img class="ToggleImgDeplier" title="Déplier" alt="Déplier" src="PowerShell%20Introduction_fichiers/fleche-bas-bleue.png" style="display:none;"></h1></header>
+<ul id="nav_sommaire_ul_principal" class="nav-sommaire-ul" style="overflow-y: auto;">
+    <li><a class="summaryIndent0" href="#L1">1. Public concerné</a><ul class="nav-sommaire-ul Indentation1">
+      
+      
+      
+      <li><a class="summaryIndent1" href="#L1-1">1-1. Les pré-requis</a></li>
+      <li><a class="summaryIndent1" href="#L1-2">1-2. Les sources</a></li>
+      <li><a class="summaryIndent1" href="#L1-3">1-3. Détails de la documentation US de PowerShell RC1</a><ul class="nav-sommaire-ul Indentation1-3">
+        
+        
+        <li><a class="summaryIndent2" href="#L1-3-1">1-3-1. Documentation associée</a></li>
+      </ul></li>
+      <li><a class="summaryIndent1" href="#L1-4">1-4. Obtenir de l'aide.</a></li>
+    </ul></li>
+    <li><a class="summaryIndent0" href="#L2">2. PowerShell qu'est-ce que c'est ?</a></li>
+    <li><a class="summaryIndent0" href="#L3">3. Le socle technique</a><ul class="nav-sommaire-ul Indentation3">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li><a class="summaryIndent1" href="#L3-1">3-1. Qu'est-ce qu'un Cmdlet</a><ul class="nav-sommaire-ul Indentation3-1">
+        
+        
+        
+        
+        
+        
+        <li><a class="summaryIndent2" href="#L3-1-1">3-1-1. Les paramètres</a></li>
+      </ul></li>
+      <li><a class="summaryIndent1" href="#L3-2">3-2. Principe de nommage des Cmdlets</a><ul class="nav-sommaire-ul Indentation3-2">
+        
+        
+        
+        <li><a class="summaryIndent2" href="#L3-2-1">3-2-1. Substantif (Nom)</a></li>
+        <li><a class="summaryIndent2" href="#L3-2-2">3-2-2. Verbe</a></li>
+        
+      </ul></li>
+      <li><a class="summaryIndent1" href="#L3-3">3-3. Les providers</a><ul class="nav-sommaire-ul Indentation3-3">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <li><a class="summaryIndent2" href="#L3-3-1">3-3-1. ObjectSpace</a></li>
+      </ul></li>
+      <li><a class="summaryIndent1" href="#L3-4">3-4. Le pipelinening</a></li>
+      <li><a class="summaryIndent1" href="#L3-5">3-5. PowerShell et WMI</a></li>
+      <li><a class="summaryIndent1" href="#L3-6">3-6. L'affichage sur la console</a></li>
+    </ul></li>
+    <li><a class="summaryIndent0" href="#L4">4. Les alias</a></li>
+    <li><a class="summaryIndent0" href="#L5">5. Les objets COM sous PowerShell</a></li>
+    <li><a class="summaryIndent0" href="#L6">6. Format de données</a></li>
+    <li><a class="summaryIndent0" href="#L7">7. L'extension de type (ETS)</a></li>
+    <li><a class="summaryIndent0" href="#L8">8. Intégration d'un nouveau Cmdlet</a></li>
+    <li><a class="summaryIndent0" href="#L9">9. Configuration de la sécurité</a></li>
+    <li><a class="summaryIndent0" href="#L10">10. La notion de 'globbing'</a></li>
+    <li><a class="summaryIndent0" href="#L11">11. Raccourcis clavier</a></li>
+    <li><a class="summaryIndent0" href="#L12">12. Liens</a></li>
+  </ul></nav>
+
+
+<div class="fixeMarge"><section itemprop="about" class="SectionSynopsis">
+    <p>
+Cet article vous propose de découvrir PowerShell, nom de code Monad, qui est le futur Shell de Microsoft Windows.<br>
+Les concepts de base présentés ici sont stabilisés mais il se peut que 
+certains détails d'implémentation ou de syntaxe différent dans la 
+release 1.0.
+<br>
+Je tiens à remercier Guy Métayer pour ses corrections orthographiques. 
+</p>
+  <p class="TextNbrVues" style="display: block;">Article lu <span id="NbrVues">67097</span> fois.</p></section></div><div class="InfoAuthArtBook" style="height: 134px;">
+	<section class="SectionAuteurs">
+	<header><h1 class="TitreHeader">L'auteur</h1></header>
+<p class="auteur" itemprop="name" itemscope="" itemtype="http://schema.org/Person"><a itemprop="url" class="auteur" href="http://www.developpez.net/forums/u11418/laurent-dardenne/"><span itemprop="author">Laurent Dardenne</span></a><a class="homepage" href="http://laurent-dardenne.developpez.com/"><img src="PowerShell%20Introduction_fichiers/kitbm-site-personnel.png" title="Contributions" alt="Site personnel" style="vertical-align:middle;"></a></p>
+</section>
+<section class="SectionInformationArticle">
+<header><h1 class="TitreHeader">L'article</h1></header>
+
+<p class="InfoArticle">Publié&nbsp;le&nbsp;<span itemprop="datePublished">25&nbsp;mai&nbsp;2006&nbsp;</span>- Mis&nbsp;à&nbsp;jour&nbsp;le&nbsp;<span itemprop="dateModified">10&nbsp;avril&nbsp;2008&nbsp;</span></p><p>
+<span class="lientelechargementpdf"><a class="lientelechargement" href="http://laurent-dardenne.developpez.com/articles/Windows/PowerShell/Introduction/Introduction-PowerShell.pdf" title="Télécharger la version PDF de cet article.">Version PDF</a></span>
+<span class="lientelechargementzip"><a class="lientelechargement" href="http://laurent-dardenne.developpez.com/articles/Windows/PowerShell/Introduction/Introduction-PowerShell.zip" title="Télécharger la version HTML de cet article.">Version hors-ligne</a></span></p>
+<p><span class="lientelechargementebook"><a class="lientelechargement" href="http://laurent-dardenne.developpez.com/articles/Windows/PowerShell/Introduction/Introduction-PowerShell.epub" title="Télécharger la version ePub de l'article compatible avec la plupart des liseuses non Kindle (Amazon).">ePub</a></span>, <span class="lientelechargementebook"><a class="lientelechargement" href="http://laurent-dardenne.developpez.com/articles/Windows/PowerShell/Introduction/Introduction-PowerShell.azw" title="Télécharger la version Azw spécifique aux liseuses Kindle (Amazon).">Azw</a></span> et <span class="lientelechargementebook"><a class="lientelechargement" href="http://laurent-dardenne.developpez.com/articles/Windows/PowerShell/Introduction/Introduction-PowerShell.mobi" title="Télécharger la version Mobi de l'article compatible avec les liseuses Amazon.">Mobi</a></span></p>
+</section>
+<section class="SectionBookmarks">
+<header><h1 class="TitreHeader">Liens&nbsp;sociaux</h1></header>
+<div class="InfoBookmarks"><a title="Viadeo" href="http://www.viadeo.com/shareit/share/?url=http%3A%2F%2Flaurent-dardenne.developpez.com%2Farticles%2FWindows%2FPowerShell%2FIntroduction%2F&amp;Title=Introduction+%C3%A0+PowerShell+%28nom+de+code+Monad%29" rel="nofollow"><img alt="Viadeo" src="PowerShell%20Introduction_fichiers/kitbm-viadeo.png"></a>&nbsp;<a title="Twitter" href="http://twitter.com/timeline/home?status=http%3A%2F%2Flaurent-dardenne.developpez.com%2Farticles%2FWindows%2FPowerShell%2FIntroduction%2F" rel="nofollow"><img alt="Twitter" src="PowerShell%20Introduction_fichiers/kitbm-twitter.png"></a>&nbsp;<a title="Facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Flaurent-dardenne.developpez.com%2Farticles%2FWindows%2FPowerShell%2FIntroduction%2F" rel="nofollow"><img alt="Facebook" src="PowerShell%20Introduction_fichiers/kitbm-facebook.png"></a>&nbsp;<a title="Google +" href="https://plus.google.com/share?url=http%3A%2F%2Flaurent-dardenne.developpez.com%2Farticles%2FWindows%2FPowerShell%2FIntroduction%2F" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="PowerShell%20Introduction_fichiers/gplus-16.png" alt="Share on Google+"></a>&nbsp;<script src="PowerShell%20Introduction_fichiers/in.js" type="text/javascript"> lang: fr_FR</script>
+			<span style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;" class="IN-widget"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1504410616581_0"><a id="li_ui_li_gen_1504410616581_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1504410616581_0-logo">in</span><span id="li_ui_li_gen_1504410616581_0-title"><span id="li_ui_li_gen_1504410616581_0-mark"></span><span id="li_ui_li_gen_1504410616581_0-title-text">Partager</span></span></a></span></span></span><script type="IN/Share+init" data-url="$url"></script>&nbsp;</div>
+</section></div><section itemprop="articleBody" class="articleBody" style="margin-left: 325px; margin-top: 20px; clear: none;">
+    
+		<h1 class="TitreSection0" id="L1">1. Public concerné<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <div class="div-figure"><figure class="figure-center"><img class="figure-img-caption" src="PowerShell%20Introduction_fichiers/niveau-debutant-avance.gif" alt="Image non disponible" width="160" height="34"></figure></div>
+      <p>
+Testé avec Monad beta3 et PowerShell RC1, le Framework .NET 2.0 et Microsoft Visual Studio 2005 C# Express.<br><b>Version 1.0</b><br><br></p>
+      
+		<h2 class="TitreSection1" id="L1-1">1-1. Les pré-requis<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+Des connaissances de base sur la programmation orientée objet sous .NET faciliterons la compréhension de cet article.<br><br>
+PowerShell nécessite les versions de Windows suivantes :
+</p>
+        <ul class="ListeDVP">
+          <li>Microsoft Windows XP SP2,</li>
+          <li>Microsoft Windows Server 2003 SP1,</li>
+          <li>Microsoft Windows Vista ("Longhorn").</li>
+        </ul>
+        <p>
+Les fichiers nécessaires à l'installation :<br><a class="lienArticle simple" href="http://www.microsoft.com/windowsserver2003/technologies/management/powershell/download.mspx">PowerShell 1.0</a>.<br><br><a class="lienArticle simple" href="http://www.microsoft.com/downloads/details.aspx?familyid=0856EACB-4362-4B0D-8EDD-AAB15C5E04F5&amp;displaylang=fr">Le Framework .NET 2.0</a>.
+</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="L1-2">1-2. Les sources<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+          <a class="lienArticle ftp" href="ftp://www.ftp-developpez.com/laurent-dardenne/articles/Windows/PowerShell/Introduction/Introduction-PowerShell.pdf">L'article au format PDF.</a>
+        </p>
+      </div>
+      
+		<h2 class="TitreSection1" id="L1-3">1-3. Détails de la documentation US de PowerShell RC1<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p><b>GettingStarted.rtf</b> : Documentation sur les principes et les commandes de base.<br><br><b>LanguageQuickReferenceTriFold.doc</b> : Tableau récapitulatif sur le langage de script.<br><br><b>TracingQuickStart.doc</b> : Récapitulatif des commandes de trace.<br></p>
+        
+		<h3 class="TitreSection2" id="L1-3-1">1-3-1. Documentation associée<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+Les tutoriels de <a class="lienArticle ftp" href="ftp://www.ftp-developpez.com/laurent-dardenne/articles/Windows/PowerShell/Introduction/fichiers/documentation-Monad-beta3.zip">la beta 3</a> :<br><br><b>MonadScripting-HandsOnLab.doc</b> : Contient 9 exercices sur la manipulation des scripts MSH.<br><br><b>BuildingMonadCmdlets-HandsOnLab.doc</b> : Tutoriel sur la construction d'un command-let.<br><br><b>CreatingMonadProviders-HandsOnLab.doc</b> : Tutoriel sur la construction d'un provider pour MSH.<br><br><br>
+Le SDK de <a class="lienArticle simple" href="http://msdn2.microsoft.com/en-us/library/ms714469.aspx">PowerShell</a>.<br></p>
+          <p class="imgtext-idea">
+Il va sans dire que la lecture de ces documents facilite grandement la 
+compréhension du nouveau Shell et du langage de script associé.<br><br><span class="italique">De nombreux paragraphes de cet article sont issus de cette documentation et du SDK.</span></p>
+          <p>
+Note : Jusqu'à la beta 3 le nom du shell était Microsoft Shell, 
+finalement il se nomme PowerShell. Vous trouverez encore de nombreux 
+liens sous l'appellation <span class="italique">Monad</span> ou <span class="italique">MSH</span>, notamment dans le SDK.
+</p>
+        </div>
+      </div>
+      
+		<h2 class="TitreSection1" id="L1-4">1-4. Obtenir de l'aide.<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+Sous PowerShell la commande <b>Get-Help</b> <span class="italique">nom_de_command-let</span> ou <b>Help</b> <span class="italique">nom_de_command-let</span>  ou encore <b>Man</b> <span class="italique">nom_de_command-let</span> permet d'afficher l'aide en ligne d'une commande particulière.<br>
+La suite de commande <b>Get-Help</b> <span class="italique">nom_de_command-let</span><b>|more</b> permet un affichage par page.
+</p>
+      </div>
+    </div>
+    
+		<h1 class="TitreSection0" id="L2">2. PowerShell qu'est-ce que c'est ?<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+PowerShell est un langage de script et un shell interactif offrant une manière de traiter des tâches <span class="italique">orientée commande</span>. Les concepteurs ont suivi différentes approches afin que PowerShell soit :
+</p>
+      <ul class="ListeDVP">
+        <li>aussi interactif et composable que KSH ou BASH,</li>
+        <li>aussi programmable que PERL ou RUBY,</li>
+        <li>aussi orienté-production que VMS DCL ou AS400 CL.</li>
+      </ul>
+      <p>
+PowerShell est compatible avec les précédents langages de scripting. En 
+règle générale, PowerShell exécute toutes les commandes et scripts 
+existants. PowerShell n'interprète pas les fichiers .bat ou .cmd, il les
+ dirige vers <span class="italique">cmd.exe</span> pour les exécuter.
+</p>
+      <p class="imgtext-warning">
+La modification de variables d'environnements dans un script .cmd afin 
+d'affecter l'exécution d'autres scripts n'est pas supportée dans 
+PowerShell et c'est la seule incompatibilité à ce niveau.
+</p>
+      <p><br>
+PowerShell facilitera les tâches d'administration telles que la gestion 
+du paramétrage des composants système imprimante, réseaux, IE, la 
+création de comptes utilisateurs et les opérations associées...<br>
+Suite aux problèmes liés à la sécurité mis en évidence dans la Beta 1, 
+PowerShell se base sur différents niveaux d'autorisation d'exécution. 
+Par exemple avec le niveau <span class="italique">AllSigned</span>, seuls les scripts disposant d'une signature autorisée s'exécuteront.<br><br>
+Rien de bien nouveau, me direz-vous par rapport aux solutions existantes
+ (Batch,VBScript,Cygwin,...). Nous allons voir ça un peu plus dans le 
+détail, ce qui vous permettra de vous faire une opinion.<br></p>
+    </div>
+    
+		<h1 class="TitreSection0" id="L3">3. Le socle technique<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+PowerShell s'appuie sur la plateforme .NET plus particulièrement sur le 
+Framework 2.0, ce qui signifie que tout est objet sous PowerShell (aussi
+ nommé PS).<br>
+Bien que PowerShell.exe soit un programme Win32 il est plus proche d'un 
+loader du runtime .NET, vous pouvez utiliser le debugger fournis avec 
+.NET 2.0 pour confirmer que PowerShell.exe est bien une application 
+gérée.<br><br>
+Déclarons une variable contenant une chaîne de caractères, puis affichons son contenu, son type et enfin le nom du type :
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e320">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e320" onclick="selectionCode('contenuCoded0e320');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e320" class="contenuCode">
+MSH C:\Temp&gt; $MaVariable="Une chaîne de caractères"
+ 
+MSH C:\Temp&gt; $MaVariable
+Une chaîne de caractères
+ 
+MSH C:\Temp&gt; $MaVariable.GetType()
+IsPublic IsSerial Name                                     BaseType
+-------- -------- ----                                     --------
+True     True     String                                   System.Object
+ 
+MSH C:\Temp&gt; $MaVariable.GetType().FullName
+System.String</code></pre></div>
+      <p>
+Ici <b>GetType</b> est une méthode de la classe .NET <b>System.Object</b>.
+ On voit qu'il n'est pas nécessaire de déclarer le type de la variable 
+pour l'utiliser ni d'appeler un constructeur pour l'initialiser, le 
+shell se charge de ces opérations afin de nous faciliter l'écriture. 
+Mais il est tout à fait possible d'expliciter ces opérations comme nous 
+le verrons plus loin.<br><br>
+Sans rien déclarer, à part notre variable, nous accédons directement à 
+la richesse du Framework.
+Toutes les classes accessibles sous .NET le sont donc sous PowerShell, 
+sous réserve de les charger. Le langage de script ne permet pas de 
+définir de nouvelles classes mais permet d'enrichir une instance avec le
+ système d'extension de type (ETS) qui n'a rien à voir avec les <a class="lienArticle simple" href="http://msdn2.microsoft.com/en-us/library/ms364047%28VS.80%29.aspx#cs3spec_topic3">Extension Methods</a> du C#3.0.<br>
+On utilisera un assembly pour déclarer de nouvelles classes.<br><br>
+Essayons de créer une fenêtre en appelant son constructeur par l'intermédiaire de la commande <b>New-Object</b> : 
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e346">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e346" onclick="selectionCode('contenuCoded0e346');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e346" class="contenuCode">
+MSH C:\Temp&gt; $form = new-object System.Windows.Forms.Form</code></pre></div>
+      <p>
+Cette instruction provoque une erreur car la classe utilisée n'est pas 
+encore accessible, on doit donc auparavant charger l'assembly 
+l'hébergeant :
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e352">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e352" onclick="selectionCode('contenuCoded0e352');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e352" class="contenuCode">
+MSH C:\Temp&gt; [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")</code></pre></div>
+      <p>
+ou <span class="italique">[System.Reflection.Assembly]</span> est un nom de classe,<br><span class="italique">::LoadWithPartialName</span> le nom d'une méthode statique effectuant le chargement et<br><span class="italique">System.Windows.Forms</span> le nom de l'assembly hébergeant la classe <b>Form</b>.<br><br>
+Un autre aspect important concerne la manipulation des collections d'objets qui ici se fait simplement. Par exemple la commande <b>Get-Process</b> renvoie la liste des processus en cours d'exécution :
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e378">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e378" onclick="selectionCode('contenuCoded0e378');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e378" class="contenuCode">
+MSH C:\Temp&gt; $ps=get-process
+MSH C:\Temp&gt; $ps[0]
+MSH C:\Temp&gt; $ps[0].processname</code></pre></div>
+      <p>
+C'est le point le plus important sous PowerShell, les commandes (plus 
+particulièrement les cmdlet) manipulent et renvoient des instances de 
+classes .NET. Dans une certaine mesure il n'est plus nécessaire de 
+spécialiser les commandes puisque l'on accède à l'ensemble des 
+informations disponibles de l'objet manipulé.<br><br>
+Ainsi traditionnellement dans un script, on appelait un premier 
+programme pour récupérer le numéro de processus d'une application puis 
+un second programme pour la supprimer. Ici sous PowerShell la méthode <b>Kill</b> de la classe <b>System.Diagnostics.Process</b> est accessible directement.<br><br></p>
+      <div class="div-figure"><figure class="figure-center"><a href="http://download.microsoft.com/download/1/8/f/18f8cee2-0b64-41f2-893d-a6f2295b40c8/TW04038_WINHEC2004.ppt"><img class="ImgCliquable figure-img-caption" src="PowerShell%20Introduction_fichiers/mshdetails3.JPG" alt="Image non disponible" width="207" height="325"></a><figcaption class="figure-img-caption TextAlign-center">Architecture de MSH, (Monad - Task-Oriented Automation Framework,[WinHEC 2004])</figcaption></figure></div>
+      <p><b>Le shell Monad</b> (msh.exe)  : Ligne de commande basé-caractères hébergée par le moteur de Monad.<br><b>Le moteur de Monad</b> (msh.dll) :
+</p>
+      <ul class="ListeDVP">
+        <li><span class="italique"><b>Script/Parser</b></span> : Traite les constructions du langage telles que les scripts, les prédicats, les conditions, etc.</li>
+        <li><b><span class="italique">Pipeline Processor</span></b> : Gère les communications entre les cmdlet via des pipes.</li>
+        <li><b><span class="italique">Command Processor</span></b> : Gère l'exécution des cmdlets, l'enregistrement et les métadonnées associées.</li>
+        <li><span class="italique"><b>Session State</b></span> : Gère les ensembles de données utilisés par un cmdlet lors de son exécution.</li>
+        <li><span class="italique"><b>Error et Event Handler</b></span> : Gère les exceptions et les événements.</li>
+        <li><span class="italique"><b>Extended Type System</b></span> : Fournit une interface commune d'accès aux propriétés, méthodes, etc. indépendante du type d'objet sous-jacent.</li>
+      </ul>
+      <p><b>Remoting (WMX)</b>: Web services for Management eXtension, remplacé par (<a class="lienArticle simple" href="http://msdn2.microsoft.com/en-us/library/aa384426.aspx">Windows Remote Management</a>) ?
+</p>
+      
+		<h2 class="TitreSection1" id="L3-1">3-1. Qu'est-ce qu'un Cmdlet<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+Un Cmdlet est une petite unité fonctionnelle ou tout simplement une 
+commande comme en contiennent d'autres types de shell. Les Cmdlets 
+diffèrent des commandes des autres environnements de scripting sur de 
+nombreux points :
+</p>
+        <ul class="ListeDVP">
+          <li>ce sont des instances d'une classe .NET et pas de simples exécutables,</li>
+          <li>ils peuvent être créés avec seulement une douzaine de lignes de code,</li>
+          <li>en général, ils ne font pas leur propre analyse, 
+présentation d'erreur ou formatage d'affichage; ceux-ci sont manipulés 
+par un moteur commun :
+  des attributs sont employés pour identifier les paramètres d'entrée ou
+ pour gérer les redirections (pipeline),des API sont proposées pour 
+gérer l'affichage ou les erreurs.</li>
+          <li>ils manipulent et fournissent des objets, plutôt que des flux (texte), en entrée et en sortie,</li>
+          <li>ils sont orientés enregistrement, traitant un seul objet à la fois.</li>
+        </ul>
+        <p>
+Un Cmdlet est donc du code managé et son implémentation doit respecter certains points comme par exemple :
+</p>
+        <ul class="ListeDVP">
+          <li>la classe doit dériver directement ou indirectement de <b>System.Management.Automation.Cmdlet</b>,</li>
+          <li>l'attribut <span class="italique"><b>[System.Management.Automation.Cmdlet(…)]</b></span> doit être défini sur la classe,</li>
+          <li>une ou plusieurs des méthodes virtuelles suivantes : <b>BeginProcessing()</b>, <b>ProcessRecord()</b> et <b>EndProcessing()</b> doivent être surchargées.</li>
+        </ul>
+        <p>
+Les Cmdlets peuvent être réalisés avec n'importe quel langage .NET ou à l'aide du langage de script PowerShell.
+Utilisez <b>Get-Command</b> pour afficher les cmdlets disponibles.
+</p>
+        
+		<h3 class="TitreSection2" id="L3-1-1">3-1-1. Les paramètres<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+Les arguments d'un Cmdlet peuvent être indiqués de différentes manières. Voyons cela avec le Cmdlet <b>Get-Command</b>, qui
+fournit des informations au sujet des divers Cmdlets disponibles. Sa signature est :
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e532">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e532" onclick="selectionCode('contenuCoded0e532');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e532" class="contenuCode">
+ get-command -Name [string] -Type [CommandTypes] -Verb [string] -Noun [string]</code></pre></div>
+          <p>
+Dans ce cas-ci et parce que <span class="italique">-Name</span> est le premier paramètre, vous pouvez omettre la désignation de paramètre (<span class="italique">-Name</span>) et indiquer seulement la valeur de ce paramètre:
+			</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e544">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e544" onclick="selectionCode('contenuCoded0e544');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e544" class="contenuCode">
+msh&gt; get-command get-command
+Command Type    Name                      Definition
+------------    ----                      ----------
+Cmdlet          get-command               get-command [-Verb String[]] [-Nou...</code></pre></div>
+          <p>
+Si vous indiquez une série de valeurs sans désigner explicitement les 
+paramètres, PowerShell associera automatiquement les valeurs aux 
+désignations appropriées basées sur l'ordre par défaut des paramètres 
+indiqués par la signature de commande, ainsi si vous entrez ce qui suit :
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e550">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e550" onclick="selectionCode('contenuCoded0e550');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e550" class="contenuCode">
+msh&gt; get-command A B C</code></pre></div>
+          <p>
+PowerShell supposera que <b>A</b> est le paramètre <span class="italique">-Name</span>, <b>B</b> est le paramètre <span class="italique">-Type</span>, et <b>C</b> le paramètre <span class="italique">-Verb</span>.
+ 
+Si vous voulez employer les paramètres dans le désordre ou si vous 
+souhaitez omettre des paramètres, vous pouvez indiquer la désignation de
+ paramètre ainsi la valeur :
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e574">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e574" onclick="selectionCode('contenuCoded0e574');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e574" class="contenuCode">
+msh&gt; get-command -Verb get
+Command Type    Name                      Definition
+------------    ----                      ----------
+Cmdlet          get-command               get-command [-Verb String[]] [-Nou...</code></pre></div>
+          <p>
+La définition d'un paramètre d'une 'classe cmdlet' se fait par l'intermédiaire d'un attribut placé sur un membre :
+</p>
+          <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e580">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e580" onclick="selectionCode('contenuCoded0e580');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e580" class="contenuCode">
+<code class="csharp_literal2">[Parameter(Mandatory=true,</code><code class="csharp_literal2"> </code><code class="csharp_literal2">Position=0)]</code>
+<code class="csharp_keyword1">public</code> <code class="csharp_keyword3">string</code><code class="csharp_operator">[</code><code class="csharp_operator">]</code> FullName</code></pre></div>
+          <p>
+Choisissez vos paramètres <a class="lienArticle simple" href="http://msdn2.microsoft.com/en-us/library/ms714428.aspx">dans la liste de paramètres normalisés</a> du SDK.<br><br>
+Le runtime de PowerShell fournis 2 ensembles de paramètres : les paramètres communs et ceux de confirmation (ShouldProcess). 
+</p>
+          <div class="TextAlign-center"><table class="tableau" style="border-width:1px;width:80%;" border="1">
+            <tbody><tr>
+              <th class="colonne_entete" style="">Nom de 'domaine'</th>
+              <th class="colonne_entete" style="">Description</th>
+              <th class="colonne_entete" style="">Exemples</th>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Common Parameters</b>
+              </td>
+              <td class="colonne" style="">Les paramètres <span class="italique">communs</span>
+ suivants sont présents sur tous les cmdlets et la redéclaration de ces 
+noms de paramètres provoquera une erreur lors de l'enregistrement du 
+Cmdlet.</td>
+              <td class="colonne" style="">
+                <span class="italique">Debug, Verbose, ErrorAction,…</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>ShouldProcess Parameters</b>
+              </td>
+              <td class="colonne" style="">Les paramètres <span class="italique">ShouldProcess</span> suivants sont présents quand le cmdlet implémente la méthode <a class="lienArticle simple" href="http://msdn2.microsoft.com/en-us/library/ms568267.aspx">ShouldProcess</a>.
+ Quand cette méthode est implémentée la redéclaration de ces noms de 
+paramètres provoquera une erreur lors de l'enregistrement du Cmdlet.</td>
+              <td class="colonne" style=""><span class="italique">Confirm</span> (Demande la confirmation d'une action),<br> <span class="italique">WhatIf</span> (Simule l'exécution de l'action).</td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Activity Parameters</b>
+              </td>
+              <td class="colonne" style="">Paramètres utilisés pour préciser le comportement du Cmdlet.</td>
+              <td class="colonne" style="">
+                <span class="italique">Compress, CaseSensitive, Retry, Notify …</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Date and Time Parameters</b>
+              </td>
+              <td class="colonne" style="">Paramètres utilisés pour manipuler l'information de date et d'heure lors d'une consultation ou création.</td>
+              <td class="colonne" style="">
+                <span class="italique">After, Before, Accessed.</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Format Parameters</b>
+              </td>
+              <td class="colonne" style="">Paramètres utilisés pour le formatage ou la génération de données.</td>
+              <td class="colonne" style="">
+                <span class="italique">As, Binary, NewLine, …</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Property Parameters</b>
+              </td>
+              <td class="colonne" style="">Paramètres utilisés pour spécifier des propriétés du Cmdlet.</td>
+              <td class="colonne" style="">
+                <span class="italique">LogName, Property, Ownern, …</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Quantity Parameters</b>
+              </td>
+              <td class="colonne" style="">Paramètres utilisés pour spécifier la portée ou l'étendue d'une commande.</td>
+              <td class="colonne" style="">
+                <span class="italique">All, Scope, Allocation, …</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Resource Parameters</b>
+              </td>
+              <td class="colonne" style="">Paramètres utilisés pour les 
+ressources, telles que l'assemblage qui contient la classe du Cmdlet et 
+l'application hébergeant le Cmdlet.</td>
+              <td class="colonne" style="">
+                <span class="italique">Assembly, Class, Culture, Interface, …</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Security Parameters</b>
+              </td>
+              <td class="colonne" style="">Paramètres utilisés pour la sécurité, comme ceux indiquant la clé de certificat et les informations de privilèges.</td>
+              <td class="colonne" style="">
+                <span class="italique">ACL, CertFile, CertStoreLocation, …</span>
+              </td>
+            </tr>
+          </tbody></table></div>
+        </div>
+      </div>
+      
+		<h2 class="TitreSection1" id="L3-2">3-2. Principe de nommage des Cmdlets<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+Un Cmdlet s'appuie sur le modèle objet de .NET pour sa construction et sur le modèle verbe-substantif pour sa règle de nommage.<br>
+Toutes les commandes doivent être <span class="italique">bien formée</span>, un nom correct se compose d'un verbe et d'un nom sous la forme : verbe-nom.<br><span class="italique">Notez l'utilisation du caractère "-" pour séparer le verbe d'action du nom de la ressource concernée.</span><br><br>
+L'idée est que chaque nom sera employé pour opérer sur une certaine partie spécifique du système. Par exemple le nom <span class="italique">Drive</span> permet de désigner les divers lecteurs du système.<br><br>
+Les opérations, ou les actions, sont définies par les verbes. Par exemple nous pourrions <span class="italique">créer</span> un lecteur ou <span class="italique">retirer</span> un lecteur existant, la syntaxe serait respectivement <span class="italique">New-Drive</span> et <span class="italique">Remove-Drive</span>.<br><br>
+On utilisera la commande <b>Get-Help</b> ou <b>Get-Command (-Noun -Verb)</b> pour retrouver les noms et verbes recensés :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e847">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e847" onclick="selectionCode('contenuCoded0e847');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e847" class="contenuCode">
+ 
+MSH C:\Temp&gt; get-help object # Retrouve les noms de commande comportant le mot Object
+Name                              Category         Synopsis
+----                              --------         --------
+foreach-object                    Command          Applies script blocks to each object...
+where-object                      Command          This Cmdlet filters the input from t...
+compare-object                    Command          Compares the properties of objects.
+measure-object                    Command          Measures various aspects of objects ...
+tee-object                        Command          Sends input objects to two places.
+new-object                        Command          [-TypeName] type-name
+select-object                     Command          Selects objects based on parameters ...
+group-object                      Command          Groups the objects that contain the ...
+sort-object                       Command          Sorts the input objects by property ...
+write-object                      Command          Writes an object to the pipeline
+ 
+MSH C:\Temp&gt; get-commande -Verb new # Retrouve les noms de commande comportant le verbe New
+ 
+Name                              Category         Synopsis
+----                              --------         --------
+new-drive                         Command          Installs a new drive on the machine.
+new-item                          Command          Creates a new item in a namespace
+new-property                      Command          Sets a new property of an item at a ...
+new-service                       Command          Creates a new service
+new-securestring                  Command          Creates a SecureString object
+new-alias                         Command          Creates a new Cmdlet-alias pairing
+new-timespan                      Command          Creates a timespan object
+new-object                        Command          [-TypeName] type-name
+new-variable                      Command          Creates a new variable.</code></pre></div>
+        
+		<h3 class="TitreSection2" id="L3-2-1">3-2-1. Substantif (Nom)<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+Les noms représentent des ressources du système, ils identifient donc le type d'objet sur lequel on opère.<br>
+ 
+Pour nommer un cmdlet choisissez des noms de substantif spécifiques et 
+évitez l'utilisation de noms génériques car PowerShell emploiera ces 
+derniers pour fournir des commandes opérant sur un large éventail de 
+ressources.<br><br>
+Le mieux est d'employer un nom singulier. Il est aussi recommandé de préfixer un nom générique, par exemple <span class="italique">Server</span>, avec une version raccourcie du nom du produit. Par exemple <span class="italique">Get-SQLServer</span>.<br><br>
+Voici la liste des noms génèrique que PowerShell a réservés :
+</p>
+          <ul class="ListeDVP">
+            <li>Alias</li>
+            <li>Children</li>
+            <li>Command</li>
+            <li>Content</li>
+            <li>Drive</li>
+            <li>History</li>
+            <li>Item</li>
+            <li>Location</li>
+            <li>Object</li>
+            <li>Property</li>
+            <li>PropertyValue</li>
+            <li>Provider</li>
+            <li>RunSpace</li>
+            <li>Variable</li>
+          </ul>
+        </div>
+        
+		<h3 class="TitreSection2" id="L3-2-2">3-2-2. Verbe<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+Le verbe identifie l'action qu'un cmdlet effectue.<br>
+Choisissez un verbe dans la liste de verbes standards du SDK et évitez 
+de dévier de cette liste. Les concepteurs ont souhaité pouvoir effectuer
+ 80 à 90% des opérations sur le système en utilisant moins de 50 verbes.
+ Ceci permet aux administrateurs d'apprendre ces 50 verbes et de deviner
+ rapidement quelles combinaisons utiliser lorsqu'ils rencontrent un 
+nouvel objet.<br><br>
+Considérons l'exemple où un utilisateur souhaite arrêter une partie du système : <span class="italique">Processus, services, WebServices, job de sauvegarde</span>, etc.<br><br>
+Choisissons de normaliser les commandes autour du verbe <span class="italique">Stop</span>. Les commandes seraient donc <span class="italique">Stop-Process, Stop-Service, Stop-WebService, Stop-BackupJob</span>, etc.<br>
+Notez que la volonté de tout contrôler avec moins de 50 verbes nécessite quelques décisions difficiles.
+<span class="italique">Kill</span> est traditionnellement le verbe pour supprimer un processus, <span class="italique">Cancel</span> possède une nuance qui est différente de
+l'arrêt (<span class="italique">Stop</span>), <span class="italique">Terminate</span> pourrait être plus approprié pour certaines parties du système. 
+Toutes ces considérations jouent un rôle important si on regarde juste un nom simple 
+mais il faut passer outre pour offrir un système d'administration cohérent.
+</p>
+          <p class="imgtext-idea">
+Les paramètres peuvent être utilisés pour préciser le sens d'un verbe.
+Par exemple <span class="italique">Stop-WebService -Drain</span> 
+pourrait être employé pour indiquer que des opérations doivent être 
+accomplies sur certains éléments avant d'arrêter le service (la création
+ d'une nouvelle commande comme <span class="italique">Drain-WebServices</span> n'est pas nécessaire).
+</p>
+          <p>
+Les verbes ont été regroupés par paire pour faciliter leur mémorisation, par exemple <span class="italique">Start</span> est associé à <span class="italique">Stop</span>, <span class="italique">Get</span> à <span class="italique">Set</span>...<br><br>
+Ces regroupements sont :<br></p>
+          <div class="TextAlign-center"><table class="tableau" style="border-width:1px;width:70%;" border="1">
+            <tbody><tr>
+              <td class="colonne" style="">
+                <b>Common Object Verbs</b>
+              </td>
+              <td class="colonne" style="">Certains de ces derniers seront employés avec presque chaque nom.<br>Par exemple beaucoup de noms supporteront les verbes <span class="italique">New</span>, <span class="italique">Remove</span>.</td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Data verbs</b>
+              </td>
+              <td class="colonne" style="">Ceux-ci sont employés pour les traitements des données.<br>Par exemple <span class="italique">Compare</span> et <span class="italique">Merge</span>.</td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Lifecycle verbs</b>
+              </td>
+              <td class="colonne" style="">Ceux-ci concernent l'activité d'un Cmdlet.<br>Les verbes de cycle de vie incluent <span class="italique">Start</span>, <span class="italique">Stop</span> et <span class="italique">Resume</span>.</td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Diagnostic verbs</b>
+              </td>
+              <td class="colonne" style="">Spécifie des opérations de diagnostiques.<br> L'ensemble inclut <span class="italique">Measure</span>, <span class="italique">Test</span> et <span class="italique">Debug</span>.</td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Communications verbs</b>
+              </td>
+              <td class="colonne" style="">Spécifie des opérations de communications.<br>Par exemple <span class="italique">Send</span> et <span class="italique">Receive</span>.</td>
+            </tr>
+            <tr>
+              <td class="colonne" style="">
+                <b>Security Verbs</b>
+              </td>
+              <td class="colonne" style="">PowerShell utilise cet ensemble pour définir les verbes à appliquer à la sécurité.<br>Par exemple <span class="italique">Grant</span> et <span class="italique">Revoke</span>.</td>
+            </tr>
+          </tbody></table></div>
+          <p><br>
+L'utilisation de ces verbes lors de la création d'un cmdlet permettra aux utilisateurs de déduire qu'un Cmdlet supportant <span class="italique">Start</span> proposera probablement <span class="italique">Stop</span> et peut-être d'autres verbes de ces ensembles.<br><br>
+Notez que dans la plupart des cas un nom emploiera des verbes de plus 
+d'un ensemble. En même temps la plupart des noms n'emploieront pas tous 
+les verbes d'un ensemble.
+</p>
+        </div>
+        <p class="imgtext-warning">
+Suite aux retours des beta-testeurs l'équipe du projet Monad à fait en 
+sorte que les développeurs utilisant des verbes non standards <a class="lienArticle simple" href="http://blogs.msdn.com/monad/archive/2006/02/16/533522.aspx">soient forcés</a> d'ajouter "__" au début du nom de cmdlet afin de rendre leur cmdlet utilisable.
+</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="L3-3">3-3. Les providers<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+PowerShell vous offre la possibilité d'employer un ensemble cohérent de 
+Cmdlets pour parcourir et naviguer sur différents types de structure de 
+données tels que le système de fichier, la base de registre, Active 
+Directory ou WMI.<br>
+Par exemple, vous pouvez employer la même commande pour lister les 
+dossiers d'un répertoire ou énumérer le contenu d'une clef de la base de
+ registre.<br><br>
+Affichons le répertoire courant :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1148">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1148" onclick="selectionCode('contenuCoded0e1148');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1148" class="contenuCode">
+MSH C:\Temp&gt; dir *.tmp
+    Directory: Microsoft.Management.Automation.Core\FileSystem::C:\Temp
+ 
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----        08/04/2006     17:58            SIT19021.tmp
+-a---        07/04/2006     09:17        256 ZLT04666.TMP
+-a---        10/04/2006     13:16      98304 ~DF2530.tmp</code></pre></div>
+        <p>
+Modifions le provider courant pour celui de la base de registre :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1154">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1154" onclick="selectionCode('contenuCoded0e1154');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1154" class="contenuCode">
+MSH C:\Temp&gt;  set-location hklm:
+MSH HKLM:\&gt; dir HARDWARE
+   Hive: Microsoft.Management.Automation.Core\Registry::HKEY_LOCAL_MACHINE\HARDWARE
+ 
+SKC  VC Name                           Property
+---  -- ----                           --------
+  4   0 ACPI                           {}
+  1   0 DESCRIPTION                    {}
+  6   0 DEVICEMAP                      {}
+  3   0 RESOURCEMAP                    {}</code></pre></div>
+        <p>
+Les providers du shell sont des interfaces logicielles qui présentent le
+ contenu des différentes structures de données dans un format cohérent.<br>
+Un provider du shell n'est pas lui-même la structure de donnée, mais une
+ manière d'accéder aux structures de données au travers des Cmdlets du 
+noyau.<br>
+Quand un provider rend disponible des structures de données, il le fait 
+en créant un ou plusieurs lecteurs (drive) qui semblent contenir toutes 
+ou certaines données stockées.<br><br>
+Par exemple, dans le cas du provider du système de fichier, il crée un 
+lecteur pour chaque disque de votre système. En conséquence, si vous 
+avez un lecteur C et un lecteur D, le provider du système de fichier 
+créera des lecteurs PowerShell appelés C et D. En fait, toutes les fois 
+qu'un nouveau lecteur est créé par Windows, y compris un lecteur partagé
+ sur un serveur,  le provider du système de fichier crée un lecteur 
+PowerShell avec le même nom. <br><br>
+Pour visualiser tous les lecteurs disponibles actuellement dans PowerShell, utilisez la commande suivante :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1170">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1170" onclick="selectionCode('contenuCoded0e1170');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1170" class="contenuCode">
+MSH C:\Temp&gt; get-drive
+Name       Provider      Root                  CurrentLocation
+----       --------      ----                  ---------------
+A          Microsoft.... A:\
+Alias      Microsoft....
+C          Microsoft.... C:\                   Temp
+cert       Microsoft.... \
+D          Microsoft.... D:\
+E          Microsoft.... E:\
+Env        Microsoft....
+F          Microsoft.... F:\
+Function   Microsoft....
+HKCU       Microsoft.... HKEY_CURRENT_USER
+HKLM       Microsoft.... HKEY_LOCAL_MACHINE
+Variable   Microsoft....</code></pre></div>
+        <p>
+Vous pouvez visualiser les Cmdlets du noyau par la commande <span class="italique">Get-Help about_Core_Commands</span>.
+</p>
+        <div class="div-figure"><figure class="figure-center"><a data-rel="lightbox[article]" href="http://laurent-dardenne.developpez.com/articles/Windows/PowerShell/Introduction/images/msharchitecture.gif"><img class="ImgCliquable figure-img-caption" src="PowerShell%20Introduction_fichiers/msharchitecture.gif" alt="Image non disponible" width="528" height="325"></a><figcaption class="figure-img-caption TextAlign-center">hosting application</figcaption></figure></div>
+        <p>
+Image issue du <a class="lienArticle simple" href="http://msdn2.microsoft.com/en-us/library/ms714658.aspx">SDK</a> de PowerShell.<br><br><b>Note</b> :<br>
+Il est tout à fait possible d'appeler des scripts ou des cmdlet dans vos applications (<a class="lienArticle simple" href="http://msdn2.microsoft.com/en-us/library/ms714630.aspx">pour plus de détails</a>).
+</p>
+        
+		<h3 class="TitreSection2" id="L3-3-1">3-3-1. ObjectSpace<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h3><div class="BlocSection2">
+          
+          <p>
+Un espace d'objet est un ensemble d'objets organisés en hiérarchie. Cette hiérarchie est appelée un <b>Drive</b>. <br>
+La hiérarchie est composée d'un ensemble de positions identifiées par des chaînes de caractère appelées <b>Path</b>.<br>
+La syntaxe pour localiser une position précise est "<b>Drive:Path</b>". <br>
+Il peut y avoir à chaque position un ou plusieurs des éléments suivants :
+ Children, Item, Property, Content, Permission, Relation.<br><br>
+Ce modèle ne normalise pas, pour aucun de ces éléments, la syntaxe d'un chemin ou des structures de données. 
+Les propriétés et le contenu d'une position dans la base de registre sont très différents de ceux d'un système de fichier ou
+d'un document XML ou encore d'un chemin Active Directory.
+<br>
+Notez que les chemins peuvent être relatifs ou absolus.
+</p>
+        </div>
+      </div>
+      
+		<h2 class="TitreSection1" id="L3-4">3-4. Le pipelinening<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+PowerShell favorise l'interaction avec les données du système qui sont 
+sous forme de données structurées ou d'objets. On peut, en ligne de 
+commande, référencer les propriétés de ces objets en utilisant leurs 
+noms plutôt que d'indiquer des colonnes et des lignes. Il en résulte un 
+shell qui est nettement plus simple à employer parce qu'il permet à 
+l'utilisateur de se concentrer sur ce qu'il veut réaliser au lieu de la 
+façon dont il doit les réaliser.<br><br>
+C'est cette dernière approche que l'on trouve avec les batchs existant, 
+voici un exemple (sous NT-W2K) pour récupérer la date système dans une 
+variable :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1238">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1238" onclick="selectionCode('contenuCoded0e1238');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1238" class="contenuCode">
+echo off
+ rem Insère la date système dans une variable 
+ 
+ rem Récupère la date. Le paramètre /T renvoie une ligne contenant 2 "mots"
+ rem  le premier = le nom du jour 
+ rem  le second = la date 
+ rem On place donc le deuxième dans la variable
+for  /f "tokens=1-2 " %%A in ('Date /T') do set date=%%B
+ 
+ rem Le séparateur de format de date par défaut est "/"
+ rem ce caractère est interdit dans les noms de fichier.
+ rem On utilise ce caractère séparateur pour parser la date JJ MM YYYY
+ rem Enfin on reconstruit la date avec le nouveau séparateur
+ rem On peut utiliser la variable DATE comme nom de fichier.
+ rem Attention on code la date sur 10 caractères (2+1+2+1+4)
+ rem SOUS XP DATE=jj/mm/aaaa
+for  /f "tokens=1-3 delims=/" %%A in ('echo ?TE%') do set date=%%A-%%B-%%C</code></pre></div>
+        <p>
+qui devient sous PowerShell :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1244">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1244" onclick="selectionCode('contenuCoded0e1244');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1244" class="contenuCode">
+MSH C:\Temp&gt; $Date=get-date -uformat "%d-%m-%y"</code></pre></div>
+        <p>
+De plus, PowerShell "ne lie pas" l'acquisition de données avec la 
+manipulation et l'affichage de données. PowerShell est construit de 
+telle manière que les données transitent d'une commande à une autre sans
+ être transformées au format texte. C'est seulement quand le texte est 
+nécessaire qu'une conversion de l'objet est faite.<br><br>
+Par exemple, si nous voulions une liste de tous les processus dont le 
+nombre de handle est plus grand que 400, nous exécuterions ce qui suit :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1253">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1253" onclick="selectionCode('contenuCoded0e1253');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1253" class="contenuCode">
+MSH C:\Temp&gt; Get-Process | where { $_.handlecount -gt 400 } | Format-List</code></pre></div>
+        <p>
+Dans cet exemple, le Cmdlet <b>Get-Process</b> passe des objets au Cmdlet <b>Where-Object</b> qui sélectionne les objets qui ont une propriété appelée <span class="italique">handlecount</span> et d'une valeur supérieure à 400. Le Cmdlet <b>Where-Object</b> envoie alors ces objets au Cmdlet <b>Format-List</b> qui les affiche.<br><br>
+La suite de caractères <b>$_</b> représente l'instance de l'objet 
+courant renvoyé par le pipe. PowerShell propose de nombreuses variables 
+spéciales, voir le chapitre <span class="italique">Special Variables</span> du document intitulé <b>GettingStarted.rtf</b>.
+</p>
+        <p class="imgtext-idea">
+Un pipeline spécial est disponible pour remonter les erreurs qui peuvent
+ être bloquantes ou pas, dans ce dernier cas le traitement se poursuit 
+après l'affichage d'un message d'erreur. Le Cmdlet <b>Write-Error</b> écrit sur ce pipeline d'erreur.
+</p>
+      </div>
+      
+		<h2 class="TitreSection1" id="L3-5">3-5. PowerShell et WMI<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+L'accès à WMI est aussi simple que sous VBScript/WSH. PowerShell 
+s'appuie sur le référentiel WMI afin d'accéder aux ressources physiques 
+sans avoir à recoder tous les traitements plus ou moins fastidieux au 
+travers d'API .NET.<br>
+Par exemple pour afficher l'espace libre disponible sur un disque on utilisera la commande <b>Get-WmiObject</b> sur la classe <span class="italique">win32_logicaldisk</span> :
+</p>
+        <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1309">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1309" onclick="selectionCode('contenuCoded0e1309');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1309" class="contenuCode">
+get-wmiobject win32_logicaldisk|format-table deviceid,size,freespace</code></pre></div>
+      </div>
+      
+		<h2 class="TitreSection1" id="L3-6">3-6. L'affichage sur la console<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h2><div class="BlocSection1">
+        
+        <p>
+De nombreux Shell utilisent l'instruction <span class="italique">Echo</span> pour écrire du 
+texte vers un pipe, sur la console, etc.<br> 
+PowerShell adopte une approche légèrement différente en différenciant le pipe et la console. 
+Le résultat n'est pas converti en texte tant qu'il n'est pas destiné à l'utilisateur. 
+Le Cmdlet <b>Write-Host</b> est équivalent à la commande UNIX <span class="italique">Echo ... &gt; /dev/tty</span>.<br><br>
+Si vous voulez écrire un objet dans un pipe, vous pouvez soit employer la commande <b>Write-Host</b>, 
+soit employer l'objet lui-même. PowerShell enverra automatiquement cet objet dans le pipe.<br><br> 
+Si vous voulez communiquer directement avec l'utilisateur utilisez la commande <b>Write-Host</b>. 
+En raison de cette différence, l'alias pour <span class="italique">Echo</span> est <b>Write-Object</b>, 
+ainsi il peut être employé pour envoyer le prochain élément dans un pipe ou sur la console.<br><br><b>Notez que <span class="italique">Write-Host</span> ne peut pas être redirigé</b>.
+</p>
+      </div>
+    </div>
+    
+		<h1 class="TitreSection0" id="L4">4. Les alias<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+Un alias est un raccourci d'un cmdlet ou d'un exécutable mais sans ces 
+paramètres (dans la beta 3 tout du moins). Ils peuvent faciliter l'accès
+ à un exécutable ou associer un terme plus explicite à un cmdlet. Par 
+exemple la commande <span class="italique">DIR</span> est un alias du cmdlet <b>Get-ChildItem</b>.<br><br>
+La commande <b>Alias</b> permet de retrouver la liste des alias déclarés. Utilisez <b>Help Alias</b> pour afficher les commandes de manipulation d'alias.
+</p>
+    </div>
+    
+		<h1 class="TitreSection0" id="L5">5. Les objets COM sous PowerShell<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+Les objets COM peuvent être instanciés par la commande <b>New-Object</b> en précisant le paramètre <span class="italique">-com</span>.<br></p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1399">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1399" onclick="selectionCode('contenuCoded0e1399');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1399" class="contenuCode">
+ $app = new-object -com "Excel.Application"
+ $Excel = get-process "EXCEL"
+ $Excel.Close</code></pre></div>
+    </div>
+    
+		<h1 class="TitreSection0" id="L6">6. Format de données<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+PowerShell propose différents formats de présentation des données, par exemple XML :
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1411">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1411" onclick="selectionCode('contenuCoded0e1411');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1411" class="contenuCode">
+   #Lignes en commentaire
+   #Exporte les données au format XML
+ get-process|Export-clixml MesProcess.XML
+ 
+   #Récupère le contenu du fichier dans une variable
+ $a=get-content MesProcess.xml </code></pre></div>
+      <p>
+Voici le contenu du fichier créé :
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1417">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1417" onclick="selectionCode('contenuCoded0e1417');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1417" class="contenuCode">
+<code class="xml_markup">&lt;</code><code class="xml_markup">Objs</code><code class="xml_markup"> </code><code class="xml_literal3">Version</code><code class="xml_operator">=</code><code class="xml_literal1">"</code><code class="xml_literal1">1.1</code><code class="xml_literal1">"</code><code class="xml_markup"> </code><code class="xml_literal3">xmlns</code><code class="xml_operator">=</code><code class="xml_literal1">"</code><code class="xml_literal1">http://schemas.microsoft.com/msh/2004/04</code><code class="xml_literal1">"</code><code class="xml_markup">&gt;</code>
+<code class="xml_markup">&lt;</code><code class="xml_markup">Obj</code><code class="xml_markup"> </code><code class="xml_literal3">RefId</code><code class="xml_operator">=</code><code class="xml_literal1">"</code><code class="xml_literal1">RefId-0</code><code class="xml_literal1">"</code><code class="xml_markup">&gt;</code>
+ <code class="xml_markup">&lt;</code><code class="xml_markup">TN</code><code class="xml_markup"> </code><code class="xml_literal3">RefId</code><code class="xml_operator">=</code><code class="xml_literal1">"</code><code class="xml_literal1">RefId-0</code><code class="xml_literal1">"</code><code class="xml_markup">&gt;</code>
+  <code class="xml_markup">&lt;</code><code class="xml_markup">T</code><code class="xml_markup">&gt;</code>System.Diagnostics.Process<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">T</code><code class="xml_markup">&gt;</code>
+  <code class="xml_markup">&lt;</code><code class="xml_markup">T</code><code class="xml_markup">&gt;</code>System.ComponentModel.Component<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">T</code><code class="xml_markup">&gt;</code>
+  <code class="xml_markup">&lt;</code><code class="xml_markup">T</code><code class="xml_markup">&gt;</code>System.MarshalByRefObject<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">T</code><code class="xml_markup">&gt;</code>
+  <code class="xml_markup">&lt;</code><code class="xml_markup">T</code><code class="xml_markup">&gt;</code>System.Object<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">T</code><code class="xml_markup">&gt;</code>
+ <code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">TN</code><code class="xml_markup">&gt;</code>
+ <code class="xml_markup">&lt;</code><code class="xml_markup">Props</code><code class="xml_markup">&gt;</code>
+  <code class="xml_markup">&lt;</code><code class="xml_markup">I32</code><code class="xml_markup"> </code><code class="xml_literal3">N</code><code class="xml_operator">=</code><code class="xml_literal1">"</code><code class="xml_literal1">BasePriority</code><code class="xml_literal1">"</code><code class="xml_markup">&gt;</code>8<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">I32</code><code class="xml_markup">&gt;</code>
+  <code class="xml_markup">&lt;</code><code class="xml_markup">B</code><code class="xml_markup"> </code><code class="xml_literal3">N</code><code class="xml_operator">=</code><code class="xml_literal1">"</code><code class="xml_literal1">HasExited</code><code class="xml_literal1">"</code><code class="xml_markup">&gt;</code>false<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">B</code><code class="xml_markup">&gt;</code>
+  <code class="xml_markup">&lt;</code><code class="xml_markup">S</code><code class="xml_markup"> </code><code class="xml_literal3">N</code><code class="xml_operator">=</code><code class="xml_literal1">"</code><code class="xml_literal1">Handle</code><code class="xml_literal1">"</code><code class="xml_markup">&gt;</code>3152<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">S</code><code class="xml_markup">&gt;</code>
+  <code class="xml_markup">&lt;</code><code class="xml_markup">I32</code><code class="xml_markup"> </code><code class="xml_literal3">N</code><code class="xml_operator">=</code><code class="xml_literal1">"</code><code class="xml_literal1">HandleCount</code><code class="xml_literal1">"</code><code class="xml_markup">&gt;</code>101<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">I32</code><code class="xml_markup">&gt;</code>
+  <code class="xml_markup">&lt;</code><code class="xml_markup">I32</code><code class="xml_markup"> </code><code class="xml_literal3">N</code><code class="xml_operator">=</code><code class="xml_literal1">"</code><code class="xml_literal1">Id</code><code class="xml_literal1">"</code><code class="xml_markup">&gt;</code>2924<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">I32</code><code class="xml_markup">&gt;</code>
+  <code class="xml_markup">&lt;</code><code class="xml_markup">S</code><code class="xml_markup"> </code><code class="xml_literal3">N</code><code class="xml_operator">=</code><code class="xml_literal1">"</code><code class="xml_literal1">MachineName</code><code class="xml_literal1">"</code><code class="xml_markup">&gt;</code>.<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">S</code><code class="xml_markup">&gt;</code>
+  ....</code></pre></div>
+      <p>
+Vous pouvez utiliser les commandes <b>Format-Table</b> et <b>Format-List</b> pour manipuler le format CVS par exemple.<br></p>
+    </div>
+    
+		<h1 class="TitreSection0" id="L7">7. L'extension de type (ETS)<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+Le <a class="lienArticle simple" href="http://msdn2.microsoft.com/en-us/library/ms714419.aspx">système d'extension de type</a>
+ (ETS) fournit aux développeurs de cmdlets et de scripts un mécanisme 
+d'accès uniforme leur permettant de manipuler facilement les différents 
+objets qui transitent entre les cmdlets, les fonctions, les filtres et 
+les scripts.<br>
+En utilisant ETS, les développeurs de cmdlets et de scripts peuvent 
+manipuler des objets .Net et des données structurées en utilisant la 
+même syntaxe que celle employée par des classes du CLR.<br><br>
+Le langage de script de PowerShell n'est pas typé (typeless) car une
+variable n'a pas besoin d'être déclarée dans un type particulier. Ceci 
+signifie que les variables créées par un développeur sont par nature 
+sans type. Cependant, le système de PowerShell est <span class="italique">piloté par les types</span> (type-driven) parce qu'il dépend des noms de type pour fonctionner.
+<br>
+Par conséquent un développeur de script a besoin de la capacité
+d'énoncer le type d'une de ses variables et de construire ses propres
+ensembles d'objets dynamiquement typés qui contiennent des
+propriétés et des méthodes et pouvant participer au système
+piloté par les types. <b>ETS</b> résout ce problème en fournissant un 
+objet commun au langage de script qui a la capacité d'énoncer son type 
+dynamiquement et d'ajouter des membres dynamiquement.<br><br>
+Dans certains cas ce système sera utilisé pour créer un alias de 
+propriété sur une classe particulière afin d'homogénéiser l'accès aux 
+données identiques mais nommées différemment.<br>
+Par exemple certaines collections .NET possèdent une propriété nommée <span class="italique">length</span> pour déterminer le nombre d'éléments de la collection alors que d'autres ont une propriété nommée <span class="italique">Count</span>. Dans ce cas pour faciliter la manipulation de cette information on ajoutera dans le fichier <b>Types.ps1xml</b> l'extension suivante :
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1786">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1786" onclick="selectionCode('contenuCoded0e1786');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1786" class="contenuCode">
+<code class="xml_markup">&lt;</code><code class="xml_markup">Type</code><code class="xml_markup">&gt;</code>
+    <code class="xml_markup">&lt;</code><code class="xml_markup">Name</code><code class="xml_markup">&gt;</code>System.Array<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">Name</code><code class="xml_markup">&gt;</code>
+    <code class="xml_markup">&lt;</code><code class="xml_markup">Members</code><code class="xml_markup">&gt;</code>
+        <code class="xml_markup">&lt;</code><code class="xml_markup">AliasProperty</code><code class="xml_markup">&gt;</code>
+            <code class="xml_markup">&lt;</code><code class="xml_markup">Name</code><code class="xml_markup">&gt;</code>Count<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">Name</code><code class="xml_markup">&gt;</code>
+            <code class="xml_markup">&lt;</code><code class="xml_markup">ReferencedMemberName</code><code class="xml_markup">&gt;</code>Length<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">ReferencedMemberName</code><code class="xml_markup">&gt;</code>
+        <code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">AliasProperty</code><code class="xml_markup">&gt;</code>
+    <code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">Members</code><code class="xml_markup">&gt;</code>
+<code class="xml_markup">&lt;</code><code class="xml_markup">/</code><code class="xml_markup">Type</code><code class="xml_markup">&gt;</code></code></pre></div>
+      <p>
+Cet exemple étend le type <b>System.Array</b>. L'affichage des membres du type renvoie désormais :
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1890">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1890" onclick="selectionCode('contenuCoded0e1890');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1890" class="contenuCode">
+MSH&gt; Get-Member -inputobject (1,2,3,4)
+ 
+    TypeName: System.Object[]
+ 
+Name               MemberType    Definition
+----               ----------    ----------
+Count              AliasProperty Count = Length
+...
+Length             Property      System.Int32 Length {get;}</code></pre></div>
+      <p><br>
+Note :<br>
+Ce mécanisme d'extension est possible car chaque objet que vous employez est encapsulé dans une instance de la classe <a class="lienArticle simple" href="http://msdn2.microsoft.com/en-us/library/system.management.automation.psobject.aspx">System.Management.Automation.PSObject</a>.
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1902">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1902" onclick="selectionCode('contenuCoded0e1902');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1902" class="contenuCode">
+MSH&gt; $a=Dir
+MSH&gt; $a.MshObject
+...</code></pre></div>
+      <p class="imgtext-idea">
+Pour plus de détails consultez le SDK ou le document nommé <b>GettingStarted.rtf</b>.
+</p>
+    </div>
+    
+		<h1 class="TitreSection0" id="L8">8. Intégration d'un nouveau Cmdlet<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+L'intégration d'un nouveau Cmdlet se fait soit à l'aide du programme <span class="italique">Make-Shell.exe</span> soit à l'aide du mécanisme appelé <span class="italique">PSSnapIn</span>.<br><span class="italique">Make-Shell</span>
+ construit un nouveau shell en intégrant les Cmdlets que vous avez 
+créés. Ceci permet d'avoir plusieurs types de shell dédiés à la gestion 
+des SGBDR, des services Web, etc. Notez que le shell primaire ne peut 
+être modifié.
+</p>
+      <p class="imgtext-warning">
+L'interopérabilité entre différentes instances de PowerShell ne semble pas encore implémentée.
+</p>
+      <p>
+La commande suivante crée un Shell (exécutable) nommé <span class="italique">newshell</span> qui intègre le cmdlet <span class="italique">Get-String</span> défini dans l'espace de nom <span class="italique">PDC.Demos</span>.
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1945">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1945" onclick="selectionCode('contenuCoded0e1945');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1945" class="contenuCode">
+ make-shell -out newshell -namespace PDC.Demos -reference get-string.dll</code></pre></div>
+      <p>
+Il existe une autre possibilité d'extension du shell avec le Cmdlet <b>PSSnapIns</b>. Consultez la documentation de PowerShell pour plus de détails.<br></p>
+      <p class="imgtext-warning">
+L'utilitaire Make-Shell est disponible dans le <a class="lienArticle simple" href="http://www.microsoft.com/downloads/details.aspx?FamilyId=C2B1E300-F358-4523-B479-F53D234CDCCF&amp;displaylang=en">SDK windows Vista</a></p>
+    </div>
+    
+		<h1 class="TitreSection0" id="L9">9. Configuration de la sécurité<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+PowerShell intègre la vérification des scripts avant leur exécution. La 
+politique de sécurité appliquée aux scripts ou à toutes autres commandes
+ saisies devant être exécutées, est régie par la clé de registre 
+suivante :
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e1969">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e1969" onclick="selectionCode('contenuCoded0e1969');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e1969" class="contenuCode">
+  HKLM\Software\Microsoft\msh\ShellId\ExecutionPolicy</code></pre></div>
+      <div class="TextAlign-center"><table class="tableau" style="border-width:1px;width:80%;" border="1">
+        <tbody><tr>
+          <th class="colonne_entete" style="">Valeur</th>
+          <th class="colonne_entete" style="">Description</th>
+        </tr>
+        <tr>
+          <td class="colonne" style="">Restricted</td>
+          <td class="colonne" style=""><b>Valeur par défaut</b>. Niveau 
+de sécurité maximum, aucune exécution de script, accès interactif 
+uniquement et charge uniquement les fichiers de configuration signés 
+dont la signature a été approuvée.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">AllSigned</td>
+          <td class="colonne" style="">Tous les fichiers .ps1 et .ps1xml
+ doivent être signés numériquement. Si un fichier signé est exécuté, le 
+shell vous demandera de confirmer si l'éditeur de la signature est 
+autorisé ou non à exécuter ce fichier.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">RemoteSigned</td>
+          <td class="colonne" style="">Seuls les fichiers .ps1 et 
+.ps1xml provenant d'Internet doivent être signés numériquement. Si un 
+fichier signé issue d'Internet est exécuté, le shell affichera un 
+message d'avertissement demandant confirmation avant son exécution.</td>
+        </tr>
+        <tr>
+          <td class="colonne" style="">Unrestricted</td>
+          <td class="colonne" style="">Aucun fichier ne doit être signé.
+ Si un fichier provient d'Internet, le shell affichera un message 
+d'avertissement demandant confirmation avant son exécution. Pour 
+supprimer ce message d'avertissement, faites, dans l'explorateur de 
+Windows, un clic-droit sur le fichier, puis "propriétés" et enfin 
+"débloquer".</td>
+        </tr>
+      </tbody></table></div>
+      <p><br>
+Pour d'autres informations consultez l'aide en ligne :
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2026">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2026" onclick="selectionCode('contenuCoded0e2026');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2026" class="contenuCode">
+ get-help about_signing|more</code></pre></div>
+    </div>
+    
+		<h1 class="TitreSection0" id="L10">10. La notion de 'globbing'<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+Le <a class="lienArticle simple" href="http://www.science.uva.nl/%7Emes/jargon/g/glob.html">globbing</a> est le développement de caractères spéciaux de remplacement tels que *, ? ou [] utilisés dans une expression.<br>
+Cette notion est similaire aux expressions régulières qui elles sont accessibles via le Framework.<br><br>
+Prenons la commande suivante :
+</p>
+      <div class="code_et_titre"><div class="titre_des_codes" id="IdTitreCode-d0e2046">&nbsp;<div class="selectionner_code"><span class="selectionner_code LienSelectionne" id="code-d0e2046" onclick="selectionCode('contenuCoded0e2046');">Sélectionnez</span></div></div><pre class="code_uniquement" style="overflow:auto;"><code id="contenuCoded0e2046" class="contenuCode">
+MSH&gt; gps [a-c]*,[t-z]* -exclude *[d-t] | stop-process</code></pre></div>
+      <p>
+On arrête ici les process dont le nom commence par <span class="italique">abc</span> et <span class="italique">tuvwxyz</span> sauf ceux dont le nom finit par les lettres de <span class="italique">d</span> à <span class="italique">t</span>.<br>
+Les shells traditionnels traitent le <b>globbing</b> sur des noms de 
+dossier. Ici comme on travaille sur des objets et leurs propriétés nous 
+avons un nombre de possibilité extraordinairement riches concernant le 
+traitement de remplacement de caractères.
+</p>
+    </div>
+    
+		<h1 class="TitreSection0" id="L11">11. Raccourcis clavier<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p>
+La version actuelle est assez pauvre en raccourcis clavier espérons que la version 1.0 soit mieux fournie.<br><br><span class="mot_souligne">Touches de Fonction</span><br><br><b>Escape</b> annule la saisie en cours.<br><b>F1</b> recopie caractère par caractère la dernière commande.<br><b>F2</b> copie jusqu'au caractère n°<br><b>F3</b> affiche la dernière commande.<br><b>F4</b> supprime jusqu'au caractère n°.<br><b>F5</b> parcourt les dernières commandes vers le début comme la touche 'flèche vers le haut'.<br><b>F6</b> équivaut à la saisie de <span class="italique">control ^Z</span> (fin de fichier ascii).<br><b>F7</b> liste dans une fenêtre les dernières commandes saisies.<br><b>F8</b> parcourt les dernières commandes vers la fin comme la touche 'flèche vers le bas'.<br><b>F9</b> numéro de commande, cf. <b>F7</b>.<br><br><span class="mot_souligne">Autres touches</span><br><br><b>haut de page</b> première commande.<br><b>bas de page</b> dernière commande.<br><b>tab</b> complétion. <span class="italique">c:\te + <b>Tab</b></span> complète avec le prochain nom fourni par le provider. <b>Tab</b> sans saisie affiche la première entrée fournie par le provider courant.<br><b>control-C</b> annule la ligne.<br><b>+-!</b>, passe en mode saisie de bloc.<br><b>}</b> une accolade fermante suivie de 2 retours chariot revient en mode 'commande'.<br></p>
+    </div>
+    
+		<h1 class="TitreSection0" id="L12">12. Liens<a class="HautPage" href="#" title="Haut de page">&#9650;</a></h1><div class="BlocSection0">
+      
+      <p><a class="lienArticle simple" href="http://www.invendows.nl/msh_scriptomatic.zip">msh_Scriptomatic</a>, générateur de script.<br><br><a class="lienArticle simple" href="http://www.powershellanalyzer.com/">POWERSHELL ANALYZER RC1</a>, projet autour de PowerShell.<br><br><a class="lienArticle simple" href="http://arstechnica.com/guides/other/msh.ars/1">A guided tour of the Microsoft Command Shell</a> (Article très fournis).<br><br><a class="lienArticle simple" href="http://www.oreilly.com/catalog/msh/chapter/ch01.pdf">Chapitre d'introduction du livre intitulé "Monad" chez OReilly (US)</a>.<br><br><a class="lienArticle simple" href="http://www.proudlyserving.com/aliens.html">Un jeux en PowerShell</a> en mode caractères.<br><br><a class="lienArticle simple" href="http://www.codeplex.com/powershellremoting">PowerShell et le remoting</a> (PowerShell ne supporte pas pour le moment le remoting).<br><br><a class="lienArticle simple" href="http://www.codeplex.com/">Providers</a> pour <span class="italique">Visual Source Safe</span> et <span class="italique">SharePoint 2003</span> sur le site Codeplex.com.<br></p>
+    </div>
+  </section><section class="articleBody" style="margin-left: 325px; margin-top: 20px; clear: none;"><p>Vous avez aimé ce tutoriel&nbsp;? Alors partagez-le en cliquant sur les boutons suivants&nbsp;: <a title="Viadeo" href="http://www.viadeo.com/shareit/share/?url=http%3A%2F%2Flaurent-dardenne.developpez.com%2Farticles%2FWindows%2FPowerShell%2FIntroduction%2F&amp;Title=Introduction+%C3%A0+PowerShell+%28nom+de+code+Monad%29" rel="nofollow"><img alt="Viadeo" src="PowerShell%20Introduction_fichiers/kitbm-viadeo.png"></a>&nbsp;<a title="Twitter" href="http://twitter.com/timeline/home?status=http%3A%2F%2Flaurent-dardenne.developpez.com%2Farticles%2FWindows%2FPowerShell%2FIntroduction%2F" rel="nofollow"><img alt="Twitter" src="PowerShell%20Introduction_fichiers/kitbm-twitter.png"></a>&nbsp;<a title="Facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Flaurent-dardenne.developpez.com%2Farticles%2FWindows%2FPowerShell%2FIntroduction%2F" rel="nofollow"><img alt="Facebook" src="PowerShell%20Introduction_fichiers/kitbm-facebook.png"></a>&nbsp;<a title="Google +" href="https://plus.google.com/share?url=http%3A%2F%2Flaurent-dardenne.developpez.com%2Farticles%2FWindows%2FPowerShell%2FIntroduction%2F" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="PowerShell%20Introduction_fichiers/gplus-16.png" alt="Share on Google+"></a>&nbsp;<script src="PowerShell%20Introduction_fichiers/in.js" type="text/javascript"> lang: fr_FR</script>
+			<span style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;" class="IN-widget"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1504410616592_1"><a id="li_ui_li_gen_1504410616592_1-link" href="javascript:void(0);"><span id="li_ui_li_gen_1504410616592_1-logo">in</span><span id="li_ui_li_gen_1504410616592_1-title"><span id="li_ui_li_gen_1504410616592_1-mark"></span><span id="li_ui_li_gen_1504410616592_1-title-text">Partager</span></span></a></span></span></span><script type="IN/Share+init" data-url="$url"></script>&nbsp;</p></section><div id="xiti-logo" class="cachee TextAlign-center">
+<a href="http://www.xiti.com/xiti.asp?s=157674" title="WebAnalytics" target="_top">
+<script type="text/javascript">
+<!--
+Xt_param = 's=157674&p=';
+try {Xt_r = top.document.referrer;}
+catch(e) {Xt_r = document.referrer; }
+Xt_h = new Date();
+Xt_i = '<img width="39" height="25" border="0" alt="" ';
+Xt_i += 'src="http://logv25.xiti.com/hit.xiti?'+Xt_param;
+Xt_i += '&hl='+Xt_h.getHours()+'x'+Xt_h.getMinutes()+'x'+Xt_h.getSeconds();
+if(parseFloat(navigator.appVersion)>=4)
+{Xt_s=screen;Xt_i+='&r='+Xt_s.width+'x'+Xt_s.height+'x'+Xt_s.pixelDepth+'x'+Xt_s.colorDepth;}
+document.write(Xt_i+'&ref='+Xt_r.replace(/[<>"]/g, '').replace(/&/g, '$')+'" title="Internet Audience">');
+//-->
+</script><img alt="" src="PowerShell%20Introduction_fichiers/hit.gif" title="Internet Audience" width="39" height="25" border="0">
+<noscript>
+Mesure d'audience ROI statistique webanalytics par <img width="39" 
+height="25" src="http://logv25.xiti.com/hit.xiti?s=133213&p=" 
+alt="WebAnalytics" />
+</noscript></a>
+</div><footer class="licence" role="contentinfo">
+</footer></article>
+		<div class="clear">&nbsp;&nbsp;</div>
+<img src="PowerShell%20Introduction_fichiers/compter-17.gif" alt="" width="1" height="1"></div>
+</section>
+
+<footer>
+<div id="gabarit_responsable">
+		<a href="https://club.developpez.com/contacts/contribuer">Contacter</a> le responsable de la rubrique Windows
+	</div>
+
+<ul id="gabarit_pied">
+	<li><a href="https://club.developpez.com/contacts/">Nous contacter</a>
+	</li><li><a href="https://www.developpez.com/participez/">Participez</a>
+	</li><li><a href="https://www.developpez.com/hebergement/">Hébergement</a>
+	</li><li><a href="https://www.developpez.com/legal/">Informations légales</a>
+</li></ul>
+
+<p id="gabarit_copyright">Copyright © 2000-2017 - www.developpez.com</p>
+
+</footer>
+<!-- Google Analytics général -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28115938-1']);
+  _gaq.push(['_setDomainName', 'developpez.com']);
+  _gaq.push(['_setCustomVar', 1, 'rubrique', 'windows', 3]);
+  _gaq.push(['_setCustomVar', 2, 'type', 'Autre', 3]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+	<script type="text/javascript">
+	$(function() {
+		if (document.cookie.indexOf("cnilcookie=1") == -1) {
+			$("<div>").html("En utilisant ce site, vous acceptez l'utilisation de
+ cookies permettant de vous proposer des contenus et des services 
+adaptés à vos centres d'intérêts - <u>Fermer</u>").attr("id", 
+"gabarit_cnilcookie").appendTo("body").click(function() {
+				$("#gabarit_cnilcookie").remove();
+				var expDate = new Date();
+				expDate.setTime(expDate.getTime() + (395 * 24 * 3600 * 1000));
+				document.cookie = "cnilcookie=1;expires=" + expDate.toGMTString() + 
+";domain=.developpez.com;path=/";
+			});
+		}
+	});
+	</script>
+
+
+
+		
+<div id="lightboxOverlay" style="display: none;"></div><div id="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image"><div class="lb-nav"><a class="lb-prev"></a><a class="lb-next"></a></div><div class="lb-loader"><a class="lb-cancel"><img src="PowerShell%20Introduction_fichiers/lightbox-ico-loading.png"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"><img src="PowerShell%20Introduction_fichiers/lightbox-btn-close.png"></a></div></div></div></div><div id="gabarit_cnilcookie">En
+ utilisant ce site, vous acceptez l'utilisation de cookies permettant de
+ vous proposer des contenus et des services adaptés à vos centres 
+d'intérêts - <u>Fermer</u></div></body></html>

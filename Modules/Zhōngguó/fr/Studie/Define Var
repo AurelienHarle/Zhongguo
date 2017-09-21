@@ -1,0 +1,15 @@
+Les variables simples peuvent être définies avec la syntaxe suivante :
+ 
+type identificateur;
+
+
+où type est le type de la variable et identificateur est son nom. Il est possible de créer et d'initialiser une série de variables dès leur création avec la syntaxe suivante :
+
+type identificateur[=valeur][, identificateur[=valeur][...]];
+ 
+
+Exemple 1-8. Définition de variables
+
+int i=0, j=0;    /* Définit et initialise deux entiers à 0 */
+double somme;    /* Déclare une variable réelle */
+ 
