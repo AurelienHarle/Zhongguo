@@ -5,4 +5,4 @@
  * @author edge
  *
  */
-package test;
+package fr.Zhongguo.test;

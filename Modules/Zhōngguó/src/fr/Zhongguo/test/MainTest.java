@@ -1,7 +1,7 @@
 /**
  * 
  */
-package test;
+package fr.Zhongguo.test;
 
 import static org.junit.Assert.assertTrue;
 
